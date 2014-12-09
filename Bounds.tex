@@ -1,0 +1,49 @@
+\input{preamble.tex}
+\DeclareMathOperator{\R}{\mathcal{R}}
+\DeclareMathOperator{\La}{\mathcal{L}}
+\DeclareMathOperator{\Aut}{Aut}
+\usepackage{amssymb}
+\begin{document}
+\section{Introduction}
+
+\section{Rooted Trees}
+ A \emph{rooted tree} is a pair, $(t,r)$, such that $t$ is a finite, simple connected graph without cycles and $r$ is a vertex that has 
+ been selected from the set, $V(t)$, of vertices of $t$ . By convention each edge is directed away from $r$.  We denote the
+ order of a tree, $t$, by $\lvert t \rvert$ and the set of order $n$ rooted trees is denoted $\R_n$.  In addition we define 
+ $R : = \bigcup R_n$.
+ 
+ A \emph{labelled rooted tree} is a triple $(t,r,L)$ such that $(t,r)$ is a rooted tree and 
+ \[L: V(t) \longrightarrow \{1,2,\dots,\lvert t \rvert\}\] 
+is a bijective map.  We denote the set of order $n$ labelled rooted trees by $\La_n$ and we define $\La = \bigcup \La_n$.      
+
+Vertices $u$ and $v$ of a rooted tree, $(t,r)$ we write $u \leq v$ if $u$ lies on the unique shortest path from $r$ to $v$.  A 
+\emph{random recursive tree} is a triple $(t,r,l)$ such that $l$ is a labelling that satisfies if $u \leq v$ then $l(u) < l(v)$. 
+We denote the set of order $n$ random recursive trees by $\T_n$ and we define $\T = \bigcup \T_n$. 
+
+%%%%%Define the set of plane trees
+
+Two rooted trees, $(t_1,r_1)$ and $(t_2,r_2)$ are said to be isomorphic of there exists a bijection $f: V(t_1) \rightarrow V(t_2)$ such that 
+vertices $u,v \in V(t_1)$ are adjacent if and only if $f(u),f(v) \in V(t_2)$ are adjacent and $f(r_1) = r_2$. If 
+$V(t_1) = V(t_2)$ then $f$ is called a rooted tree automorphism.  The set of automorphisms of a tree, $t$, together with 
+composition of maps forms a group denoted $\Aut(t)$.  The order of the automorphsim group is denoted 
+\[\sigma(t) := \lvert \Aut(t) \rvert\] 
+Consider a map $\phi: \La \rightarrow R$ that simply forgets the labels of a labelled by mapping
+\[
+ (t,r,L) \mapsto (t,r)
+\]
+The map $\phi$ is clearly surjective but not injective hence we define $\beta(t) = \lvert \phi^{-1}(t) \rvert$ to be the number of
+possible isomorphism classes of labellings of a rooted tree $t \in \R$. There are $\lvert t \rvert !$ possible labellings of a tree 
+$t \in \R$ hence there are  
+\begin{equation}\label{eq:1}
+  \beta(t) = \frac{\lvert t \rvert !}{\sigma(t)} 
+\end{equation}
+isomorphism classes of labellings of such a tree.  
+
+Since $\T \leq \La$ we may restrict $\phi$ to random recursive trees and define
+\[
+ \alpha(t) := \lvert \phi^{-1}\restriction_{\T}(t) \rvert 
+\]
+however, to provide a result analagous to Equation \ref{eq:1} we require several additional definitions.  
+
+
+\end{document}
