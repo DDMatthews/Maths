@@ -2,6 +2,7 @@
 \DeclareMathOperator{\F}{\mathcal{F}}
 \DeclareMathOperator{\R}{\mathcal{R}}
 \DeclareMathOperator{\La}{\mathcal{L}}
+\DeclareMathOperator{\V}{\mathcal{V}}
 \DeclareMathOperator{\Aut}{Aut}
 \usepackage{amssymb}
 \begin{document}
@@ -121,6 +122,88 @@ There are
 \]
 non-isomorphic possibilities for the ordering of the children of $v$.
 \end{proof}
+\section{Functions on Trees}
+%%add an introductory sentence or two - a tool kit for tree parameters
+\subsection{Inductive Maps}
+\begin{defn}
+ Let $s = \{ s_r\}_{r=0}^{\infty}$ be a sequence such that each $s_r \in \{0,1\}$.  The variety, $\V$, of trees is the 
+ collection of random recursive trees such that a vertex is permitted to have outdegree $r$ only if $s_r = 1$ for each $r$. 
+\end{defn}
+\begin{remk}
+ For a more general setting see \cite{Bergeron}.
+\end{remk}
+The \emph{degree function} associated with a sequence $s$ is the exponential generating function (EGF) defined as follows:
+\[
+ \phi(w) = \sum_{r \geq 0} s_r \frac{w^r}{r!}
+\]
+%%%%%%%BAD Notation remove phi from earlier or here
+
+\begin{ex}
+ The collection, $\mathcal{B}$, of increasing binary trees are the subset of random recursive trees such that all vertices 
+ have outdegree either 0,1 or 2.  The degree function for increasing binay trees is
+ \[
+  \phi(w) = 1 + w + \frac{w^2}{2}
+ \]
+The degree function for random recursive trees is
+\[
+ \phi(w) = \exp(w).
+\]
+\end{ex}
+Fix a variety of trees, $\mathcal{V}$ and let $V_n$ be the number of trees of order $n$ in the variety.  The EGF of the variety of trees 
+is 
+\[
+ V_{\V}(z) = \sum_{n \geq 1} V_n \frac{z^n}{n!}
+\]
+For example, 
+\begin{align}
+V_{\T}(z) &= \sum_{n\geq 1} \frac{z^n}{n} \\
+&= \log\left( \frac{1}{1-z}\right)
+\end{align}
+since the number of random recursive trees of order $n$ is $(n-1)!$.
+
+\begin{defn}
+Let $f = \{f_n\}_{n\geq 1}$ be a sequence of real numbers.  A function $s: \R \rightarrow \mathbb{R}$ is called an 
+\emph{inductive map} if it is defineable by a relation,
+\[
+ s(t) = f_{\lvert t \rvert} + \sum_{i=1}^k s(t_i)
+\]
+where $t = B^{+}(t_1,t_2,\dots,t_k)$.  Given a tree function $s$ and a variety $\mathcal{V}$ the EGF of $s$ over $\mathcal{V}$ is 
+\[
+ S(z) = \sum_{t \in \V} s(t) \frac{z^{\lvert t \rvert}}{\lvert t \rvert !}
+\]
+\begin{ex}
+ Let $\delta_{i,j}$ be the usual kronecker delta. The following is a list of possible sequences $f$ and the tree paramater 
+ measured by the corresponding function $s$:
+ \begin{itemize}
+  \item[(i)]   $f_n = 1$ for all $n$ counts tree size.
+  \item[(ii)] $f_n = \delta_{n,i}$ counts the number of induced subtrees of order $i$.
+  \item[(iii)] $f_n = n$ counts path lengths.
+ \end{itemize}
+ \end{ex}
+
+In order to calculate $S(z)$ easily and effectively we appeal to the following Theorem of Bergeron \cite{Bergeron}.
+\begin{thm}
+ \[
+ S(z) = Y'(z) \int_{0}^{z} \frac{F'(t)}{Y'(t)} dt
+ \]
+where $F(z)$ is defined from $\V$ and the sequence $f$
+\[
+ F(z) = \sum_{n \geq 0} f_n V_n \frac{z^n}{n!}
+\]
+\end{thm}
+
+ 
+
+
+\end{defn}
+
+
+
+
+
+
+
+
 
 
 
