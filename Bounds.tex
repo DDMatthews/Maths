@@ -1,4 +1,5 @@
 \input{preamble.tex}
+\DeclareMathOperator{\F}{\mathcal{F}}
 \DeclareMathOperator{\R}{\mathcal{R}}
 \DeclareMathOperator{\La}{\mathcal{L}}
 \DeclareMathOperator{\Aut}{Aut}
@@ -7,29 +8,31 @@
 \section{Introduction}
 
 \section{Rooted Trees}
- A \emph{rooted tree} is a pair, $(t,r)$, such that $t$ is a finite, simple connected graph without cycles and $r$ is a vertex that has 
- been selected from the set, $V(t)$, of vertices of $t$ . By convention each edge is directed away from $r$.  We denote the
+ A \emph{rooted tree} is a triple $t = (r,V,E)$, such that $(V,E)$ is a finite, simple connected graph without cycles with 
+ vertex set $V$ and edge set $E$. A vertex, $r \in V$, is selected from $V$ and called the \emph{root}. By convention each edge is directed away from $r$.  We denote the
  order of a tree, $t$, by $\lvert t \rvert$ and the set of order $n$ rooted trees is denoted $\R_n$.  In addition we define 
  $R : = \bigcup R_n$.
  
- A \emph{labelled rooted tree} is a triple $(t,r,L)$ such that $(t,r)$ is a rooted tree and 
- \[L: V(t) \longrightarrow \{1,2,\dots,\lvert t \rvert\}\] 
+ A \emph{labelled rooted tree} is a quadruple $t = (r,V,E,L)$ such that $(r,V,E)$ is a rooted tree and 
+ \[L: V \longrightarrow \{1,2,\dots,\lvert t \rvert\}\] 
 is a bijective map.  We denote the set of order $n$ labelled rooted trees by $\La_n$ and we define $\La = \bigcup \La_n$.      
 
-Vertices $u$ and $v$ of a rooted tree, $(t,r)$ we write $u \leq v$ if $u$ lies on the unique shortest path from $r$ to $v$.  A 
-\emph{random recursive tree} is a triple $(t,r,l)$ such that $l$ is a labelling that satisfies if $u \leq v$ then $l(u) < l(v)$. 
+For any pair of vertices $u$ and $v$ of a rooted tree we write $u \leq v$ if $u$ lies on the unique shortest path from $r$ to $v$.  A 
+\emph{random recursive tree} is a quadruple $t = (r,V,E,l)$ such that $t$ is a labelled rooted tree and $l$ is a labelling 
+such that if $u \leq v$ then $l(u) < l(v)$. 
 We denote the set of order $n$ random recursive trees by $\T_n$ and we define $\T = \bigcup \T_n$. 
 
 %%%%%Define the set of plane trees
 
-Two rooted trees, $(t_1,r_1)$ and $(t_2,r_2)$ are said to be isomorphic of there exists a bijection $f: V(t_1) \rightarrow V(t_2)$ such that 
+Two rooted trees $t_1$ and $t_2$ with roots $r_1$ and $r_2$ and vertex sets $V(t_1)$ and $V(t_2)$ respectively are said to be
+isomorphic if there exists a bijection $f: V(t_1) \rightarrow V(t_2)$ such that 
 vertices $u,v \in V(t_1)$ are adjacent if and only if $f(u),f(v) \in V(t_2)$ are adjacent and $f(r_1) = r_2$. If 
 $V(t_1) = V(t_2)$ then $f$ is called a rooted tree automorphism.  The set of automorphisms of a tree, $t$, together with 
-composition of maps forms a group denoted $\Aut(t)$.  The order of the automorphsim group is denoted 
+composition of maps forms a group denoted $\Aut(t)$.  The order of the automorphsim group is 
 \[\sigma(t) := \lvert \Aut(t) \rvert\] 
 Consider a map $\phi: \La \rightarrow R$ that simply forgets the labels of a labelled by mapping
 \[
- (t,r,L) \mapsto (t,r)
+ (r,V,E,L) \mapsto (r,V,E)
 \]
 The map $\phi$ is clearly surjective but not injective hence we define $\beta(t) = \lvert \phi^{-1}(t) \rvert$ to be the number of
 possible isomorphism classes of labellings of a rooted tree $t \in \R$. There are $\lvert t \rvert !$ possible labellings of a tree 
@@ -37,13 +40,88 @@ $t \in \R$ hence there are
 \begin{equation}\label{eq:1}
   \beta(t) = \frac{\lvert t \rvert !}{\sigma(t)} 
 \end{equation}
-isomorphism classes of labellings of such a tree.  
+isomorphism classes of labellings of $t$.  
 
-Since $\T \leq \La$ we may restrict $\phi$ to random recursive trees and define
+Since $\T \leq \La$ we denote by $\psi$ the restriction of $\phi$ to random recursive trees and define
 \[
- \alpha(t) := \lvert \phi^{-1}\restriction_{\T}(t) \rvert 
+ \alpha(t) := \lvert \psi^{-1}(t) \rvert 
 \]
 however, to provide a result analagous to Equation \ref{eq:1} we require several additional definitions. 
+
+Let $t_1,t_2,\dots,t_k$ be a forest of rooted trees: the rooted tree $B^{+}(t_1,t_2,\dots,t_k)$ is built from this forest by 
+introducing a new vertex, $r$ (the root of $B^{+}(t_1,t_2,\dots,t_k)$), and joining the roots of each tree $t_1,t_2,\dots,t_k$ 
+to $r$ via an edge.  Since every tree $t$ can be written as $B^{+}(t_1,t_2,\dots,t_k)$ if $\lvert t \rvert > 1$ we henceforth 
+assume that each rooted tree $t = B^{+}(t_1,t_2,\dots,t_k)$ if $\lvert t \rvert >1$.  For conveniance we will denote the rooted tree on 1 vertex 
+by $\bullet$.
+
+%%%WE can get rid of the order condition by following Connes and Kreimer and defining a rooted tree on no vertices
+
+We have already seen one function $f: \R \rightarrow \mathbb{R}$ on rooted trees ($f(t) = \lvert t \rvert$), let us consider 
+another: We define the tree factorial $t!$ recursively
+\begin{align}
+ \bullet! &=  1  \\
+ t ! &= \lvert t \rvert \prod_{i=1}^k t_i !
+\end{align}
+
+\begin{ex}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Include a few examples%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{ex}
+
+\begin{lem}
+For a rooted tree $t$,
+ \begin{equation}\label{eq:2}
+\alpha(t) = \frac{\lvert t \rvert !}{t!\sigma(t)}
+ \end{equation}
+\end{lem}
+
+%%%%%induced subtree
+
+\begin{proof}
+ There are $n!$ ways of labelling a tree $t \in \R_n$, however if $l$ is a random recursive labelling every induced subtree 
+ $t_v$ and a totally ordered set, $S$, of labels there is precisely one possible label $s \in S$ for vertex $v$ (namely $s = \min(S)$).  
+ Therefore the factor we should divide out by is precisely $t!$.  In addition, to calculate the number of isomorphism classes of 
+ random recursive trees we must again divide out by $\sigma(t)$.
+\end{proof}
+
+Finally, let $\chi: \F \rightarrow \R$ be the map that ``forgets'' the embedding of a rooted plane tree.  It is clear that $\chi$ 
+is surjective but not injective hence we define
+\[
+ \gamma(t) = \lvert \chi^{-1} \rvert 
+\]
+the number of isomorphism classes of embeddings of a rooted tree $t$.  In order to obtain a third relation analagous to Equations 
+\ref{eq:1} and \ref{eq:2} we will describe a third function $w: \R \rightarrow \mathbb{R}$ recursively:
+\begin{align}
+ w(\bullet) &= 1  \\ 
+ w(t)  &= k!\prod_{i=1}^{k}w(t_i) 
+\end{align}
+\begin{ex}
+ Do the same example set as before
+\end{ex}
+
+\begin{lem}
+ \begin{equation}
+  \gamma(t) = \frac{w(t)}{\sigma(t)}
+ \end{equation}
+\end{lem}
+\begin{proof}
+ %%%%%%add a diagram to this proof
+ Let $B^{+}(t_1^{n_1},t_2^{n_2},\dots,t_k^{n_k})$ denote a tree in which the root is incident to $n_1$ isomorphic copies 
+ of a tree $t_1$, $n_2$ isomorphic copies of $t_2$ and so forth.  We remark that every rooted tree with at least 2 vertices can 
+ be written in this way.  Let $t  \in R$ and consider an induced subtree $t_v = B^{+}(t_1^{n_1},t_2^{n_2},\dots,t_k^{n_k})$. 
+ Vertex $v$ contributes a factor of $\left( \sum_{i=1}^k n_i \right)! $ to $w(t)$ since it has a recursive definition.  The order of 
+ automorphism group, $\sigma(t)$ can also be expressed recursively:
+ \begin{align}
+  \sigma(\bullet) &= 1 \\
+  \sigma(t) &= n_1 ! n_2! \dots n_k ! \prod_{i=1}^k\sigma(t_i)^{n_i} 
+ \end{align}
+Therefore vertex $v$ contribute a factor of $\prod_{i=1}^k n_i !$ to $\sigma(t)$.  Finally consider, $\gamma(t)$, the number of somorphism classes of embeddings of $t$.  
+There are 
+\[
+ \frac{\left(\sum_{i=1}^k n_i \right)!}{\prod_{i=1}^k n_i!}
+\]
+non-isomorphic possibilities for the ordering of the children of $v$.
+\end{proof}
+
 
 
 \end{document}
