@@ -43,7 +43,5 @@ Since $\T \leq \La$ we may restrict $\phi$ to random recursive trees and define
 \[
  \alpha(t) := \lvert \phi^{-1}\restriction_{\T}(t) \rvert 
 \]
-however, to provide a result analagous to Equation \ref{eq:1} we require several additional definitions. 
-
-
+however, to provide a result analagous to Equation \ref{eq:1} we require several additional definitions.  
 \end{document}
