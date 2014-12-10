@@ -123,24 +123,26 @@ There are
 non-isomorphic possibilities for the ordering of the children of $v$.
 \end{proof}
 \section{Functions on Trees}
-%%add an introductory sentence or two - a tool kit for tree parameters
+In this section we will build up a 3-part tool kit of functions $f: \R \rightarrow \mathbb{R}$ which will be used to calculate 
+ properties of rooted trees such as path length and order.  
+ 
 \subsection{Inductive Maps}
 \begin{defn}
- Let $s = \{ s_r\}_{r=0}^{\infty}$ be a sequence such that each $s_r \in \{0,1\}$.  The variety, $\V$, of trees is the 
- collection of random recursive trees such that a vertex is permitted to have outdegree $r$ only if $s_r = 1$ for each $r$. 
+ Let $s = \{ s_r\}_{r=0}^{\infty}$ be a sequence such that each $s_r \in \{0,1\}$.  A \emph{variety}, $\V$, of trees is a 
+ collection of random recursive trees such that each vertex is permitted to have outdegree $r$ only if $s_r = 1$. 
 \end{defn}
 \begin{remk}
  For a more general setting see \cite{Bergeron}.
 \end{remk}
-The \emph{degree function} associated with a sequence $s$ is the exponential generating function (EGF) defined as follows:
+The \emph{degree function} associated with a sequence $s= \{ s_r\}_{r=0}^{\infty}$ is the exponential generating function (EGF) defined as follows:
 \[
  \phi(w) = \sum_{r \geq 0} s_r \frac{w^r}{r!}
 \]
 %%%%%%%BAD Notation remove phi from earlier or here
 
 \begin{ex}
- The collection, $\mathcal{B}$, of increasing binary trees are the subset of random recursive trees such that all vertices 
- have outdegree either 0,1 or 2.  The degree function for increasing binay trees is
+ The collection, $\mathcal{B}$, of increasing binary trees are the set of all random recursive trees such that each vertex has 
+ outdegree either 0,1 or 2.  The degree function for increasing binay trees is
  \[
   \phi(w) = 1 + w + \frac{w^2}{2}
  \]
@@ -149,7 +151,7 @@ The degree function for random recursive trees is
  \phi(w) = \exp(w).
 \]
 \end{ex}
-Fix a variety of trees, $\mathcal{V}$ and let $V_n$ be the number of trees of order $n$ in the variety.  The EGF of the variety of trees 
+Fix a variety, $\mathcal{V}$, and define $V_n$ to be the number of trees of order $n$ in $\V$.  The EGF of the variety of trees 
 is 
 \[
  V_{\V}(z) = \sum_{n \geq 1} V_n \frac{z^n}{n!}
@@ -167,13 +169,15 @@ Let $f = \{f_n\}_{n\geq 1}$ be a sequence of real numbers.  A function $s: \R \r
 \[
  s(t) = f_{\lvert t \rvert} + \sum_{i=1}^k s(t_i)
 \]
-where $t = B^{+}(t_1,t_2,\dots,t_k)$.  Given a tree function $s$ and a variety $\mathcal{V}$ the EGF of $s$ over $\mathcal{V}$ is 
+where $t = B^{+}(t_1,t_2,\dots,t_k)$.
+\end{defn}
+Given a tree function $s$ and a variety $\mathcal{V}$ the EGF of $s$ over $\mathcal{V}$ is 
 \[
  S(z) = \sum_{t \in \V} s(t) \frac{z^{\lvert t \rvert}}{\lvert t \rvert !}
 \]
 \begin{ex}
  Let $\delta_{i,j}$ be the usual kronecker delta. The following is a list of possible sequences $f$ and the tree paramater 
- measured by the corresponding function $s$:
+ measured by the corresponding function $s$
  \begin{itemize}
   \item[(i)]   $f_n = 1$ for all $n$ counts tree size.
   \item[(ii)] $f_n = \delta_{n,i}$ counts the number of induced subtrees of order $i$.
@@ -192,19 +196,55 @@ where $F(z)$ is defined from $\V$ and the sequence $f$
 \]
 \end{thm}
 
- 
+ \subsection{Butcher Series}
+ %The reference for the begining of this section s ``Geometric numerical integration''
+ Let $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a suitably differentiable function and consider differential equations of the form 
+ \[
+  \dot{y} = f(y)
+ \]
+and $y(s_0) = y_0$.  Note that $f'(y)$ is a linear map (the Jacobian), $f''(y)$ is a billinear map and so on.  
 
-
+%%ADD the next section carefully%%%%%%
+\begin{defn}
+Let $t = B^{+}(t_1,t_2,\dots,t_k)$ be  a rooted tree. An \emph{elementary differential} is a map  $F(t):  \mathbb{R} \rightarrow \mathbb{R}$ defined 
+recursively:
+\begin{align}
+ F(\bullet)(s) &= f(s) \\%%%%%This doesn't makes sense becase $s$ is not a real number!!!!
+ F(t)(s) &= f^{m}(y)(F(t_1)(y),\dots,f(t_k)(y))
+ \end{align}
 \end{defn}
+Let
+\[
+ G(s) = \sum_{n=0}^{\infty}f^{(n)}(s_0) \frac{s^n}{n!}
+\]
+%%%Put some blurb in here i.e. explanation
+\begin{theorem}
+ The solution of 
+ \[
+  x(s) = x_0 + \int_{s_0}^{s} G(x(s')) ds'
+ \]
+is
+\[
+ x(s) = x_0 + \sum \frac{(s-s_0)^{\lvert t \rvert}}{\lvert t \rvert !}\alpha(t)F(t)(s_0)
+\]
+\end{theorem}
+\begin{ex}
+ Let $x_0 = s_0 = 0$  and consider the case $f^{k}(t)(0) = k!$ for all trees $t \in R$, then 
+ \[
+ f^{(k)}(t)(0) = k!(F(t_1)(0),\dots,F(t_k)(0))
+ \]
+ thus $G(s) = \frac{1}{(1-s)}$ and $F(t)(s) = w(t)$.  
+ 
+ %Finish off this example
+\end{ex}
+
+
+\subsection{Bare Green Functions}
+
+\section{Rooted Tree Automorphisms}
 
 
 
-
-
-
-
-
-
-
+\section{Applications of Tree Functions}
 
 \end{document}
