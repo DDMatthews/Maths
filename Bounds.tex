@@ -102,7 +102,7 @@ the number of isomorphism classes of embeddings of a rooted tree $t$.  In order 
 \end{ex}
 
 \begin{lem}
- \begin{equation}
+ \begin{equation}\label{eq:3}
   \gamma(t) = \frac{w(t)}{\sigma(t)}
  \end{equation}
 \end{lem}
@@ -251,6 +251,7 @@ where $F(z)$ is defined from $\V$ and the sequence $f$
 
  \subsection{Butcher Series}
  %The reference for the begining of this section s ``Geometric numerical integration''
+ %Actually include the definition of a B-series
  Throughout this section let $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a suitably differentiable function and consider differential equations of the form 
  \[
   \frac{d}{ds}{y(s)} = f(y(s))
@@ -266,7 +267,7 @@ recursively by:
  \end{align}
 \end{defn}
 %%%Add explanation
-\begin{theorem}
+\begin{theorem}\label{Butcher}
  The solution of 
  \[
   y(s) = y_0 + \int_{s_0}^{s} f(y(s')) ds'
@@ -281,12 +282,32 @@ is
  See \cite{Butcher,Brouder}
 \end{proof}
 
-\begin{ex}
+\begin{ex}\label{ex:1}
  Let $y_0 = s_0 = 0$  and consider the case $f(s) = \frac{1}{1-s}$ so that  $f^{(k)}(0) = k!$ then $F(t) = w(t)$.
 \end{ex}
 
 \subsection{Bare Green Functions}
 
 \section{Bounds on the expected value of $\Aut(t)$}
+\subsection{A lower bound}
+\subsection{A disproof of Conjecture \ref{conj:2}}
+\subsection{An upper bound}
+In this section we will use B-series and Theorem \ref{thm:Butcher} to calculate an upper bound for the expected order $\mathbb{E}_{\T,n}(\sigma(t)}$ of an automorphism group of a random recursive tree $t$.  
+
+Recall from equation \ref{eq:3} that $\gamma(t) = \frac{w(t)}{\sigma(t)}$ hence
+\begin{align}
+ \mathbb{E}_{\T,n}(\sigma(t)}  &= \frac{1}{\lvert \T_n \rvert} \sum_{t \in R_n} \alpha(t)\sigma(t)  \\
+ &< \frac{1}{\lvert \T_n \rvert} \sum_{t \in R_n} \alpha(t)w(t)
+\end{align}
+We define $f(s)= \frac{1}{1-s}$ as in Example \ref{ex:1} so that  $f^{(k)}(0) = k!$.  By Theorem \ref{Butcher} the solution to 
+\[
+ x(s) = \int_0^s = \frac{1}{1-x(s')} ds'
+\]
+is
+\[
+ x(s) = \sum_{t \in \R} \frac{s^{\lvert t \rvert}}{\lvert t \rvert !}\alpha(t)w(t)
+\]
+
+
 
 \end{document}
