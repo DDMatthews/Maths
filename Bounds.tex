@@ -126,7 +126,8 @@ non-isomorphic possibilities for the ordering of the children of $v$.
 \end{proof}
 
 \section{Automorphisms of Trees}
-%%%The first paragraph has been lifted from ben so need to rewrite it
+In this section we will describe a direct product decomposition of the automorphism group of a tree, $t$, in which factors of the direct product can be associated with particular induced subtrees of $t$.  
+
 Recall that a (rooted) tree automorphism is a permutation of vertices that preserves adjacency and the root.  It is a result of P\'{o}lya that automorphism 
 groups of trees belong to the class, $\mathcal{W}$, of permutation groups which contains the symmetric groups and is closed under taking direct and wreath products.  Let $t$ 
 be a rooted tree and consider the following decomposition,
@@ -250,53 +251,42 @@ where $F(z)$ is defined from $\V$ and the sequence $f$
 
  \subsection{Butcher Series}
  %The reference for the begining of this section s ``Geometric numerical integration''
- Let $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a suitably differentiable function and consider differential equations of the form 
+ Throughout this section let $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a suitably differentiable function and consider differential equations of the form 
  \[
-  \dot{y} = f(y)
+  \frac{d}{ds}{y(s)} = f(y(s))
  \]
-and $y(s_0) = y_0$.  Note that $f'(y)$ is a linear map (the Jacobian), $f''(y)$ is a billinear map and so on.  
+where $y(s_0) = y_0$.  We use the notation $f'(y)$ for the derivative $\frac{d}{dy}f(y)$ and note that $f'(y)$ is a linear map (the Jacobian), the second derivative $f''(y)$ is a billinear map and so on. 
 
-%%ADD the next section carefully%%%%%%
 \begin{defn}
-Let $t = B^{+}(t_1,t_2,\dots,t_k)$ be  a rooted tree. An \emph{elementary differential} is a map  $F(t):  \mathbb{R} \rightarrow \mathbb{R}$ defined 
-recursively:
+Let $t = B^{+}(t_1,t_2,\dots,t_k)$ be  a rooted tree. An \emph{elementary differential} is a map  $F(t):  \mathbb{R}^n \rightarrow \mathbb{R}^n$ defined 
+recursively by:
 \begin{align}
- F(\bullet)(s) &= f(s) \\%%%%%This doesn't makes sense becase $s$ is not a real number!!!!
- F(t)(s) &= f^{m}(y)(F(t_1)(y),\dots,f(t_k)(y))
+ F(\bullet)(y) &= f(y) \\%%%%%This doesn't makes sense becase $s$ is not a real number!!!!
+ F(t)(y) &= f^{m}(y)(F(t_1)(y),\dots,f(t_k)(y))
  \end{align}
 \end{defn}
-Let
-\[
- G(s) = \sum_{n=0}^{\infty}f^{(n)}(s_0) \frac{s^n}{n!}
-\]
-%%%Put some blurb in here i.e. explanation
+%%%Add explanation
 \begin{theorem}
  The solution of 
  \[
-  x(s) = x_0 + \int_{s_0}^{s} G(x(s')) ds'
+  y(s) = y_0 + \int_{s_0}^{s} f(y(s')) ds'
  \]
 is
 \[
- x(s) = x_0 + \sum \frac{(s-s_0)^{\lvert t \rvert}}{\lvert t \rvert !}\alpha(t)F(t)(s_0)
+ y(s) = y_0 + \sum_{t \in \R} \frac{(s-s_0)^{\lvert t \rvert}}{\lvert t \rvert !}\alpha(t)F(t)(y_0)
 \]
 \end{theorem}
-\begin{ex}
- Let $x_0 = s_0 = 0$  and consider the case $f^{k}(t)(0) = k!$ for all trees $t \in R$, then 
- \[
- f^{(k)}(t)(0) = k!(F(t_1)(0),\dots,F(t_k)(0))
- \]
- thus $G(s) = \frac{1}{(1-s)}$ and $F(t)(s) = w(t)$.  
- 
- %Finish off this example
-\end{ex}
 
+\begin{proof}
+ See \cite{Butcher,Brouder}
+\end{proof}
+
+\begin{ex}
+ Let $y_0 = s_0 = 0$  and consider the case $f(s) = \frac{1}{1-s}$ so that  $f^{(k)}(0) = k!$ then $F(t) = w(t)$.
+\end{ex}
 
 \subsection{Bare Green Functions}
 
-\section{Rooted Tree Automorphisms}
-
-
-
-\section{Applications of Tree Functions}
+\section{Bounds on the expected value of $\Aut(t)$}
 
 \end{document}
