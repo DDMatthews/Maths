@@ -292,22 +292,68 @@ is
 \subsection{A lower bound}
 \subsection{A disproof of Conjecture \ref{conj:2}}
 \subsection{An upper bound}
-In this section we will use B-series and Theorem \ref{thm:Butcher} to calculate an upper bound for the expected order $\mathbb{E}_{\T,n}(\sigma(t)}$ of an automorphism group of a random recursive tree $t$.  
+In this section we will use B-series and Theorem \ref{thm:Butcher} to calculate an upper bound for the expected order 
+$\mathbb{E}_{\T,n}(\sigma(t))$ of an automorphism group of a random recursive tree $t$.  
 
 Recall from equation \ref{eq:3} that $\gamma(t) = \frac{w(t)}{\sigma(t)}$ hence
 \begin{align}
- \mathbb{E}_{\T,n}(\sigma(t)}  &= \frac{1}{\lvert \T_n \rvert} \sum_{t \in R_n} \alpha(t)\sigma(t)  \\
+ \mathbb{E}_{\T,n}(\sigma(t))  &= \frac{1}{\lvert \T_n \rvert} \sum_{t \in R_n} \alpha(t)\sigma(t)  \\
  &< \frac{1}{\lvert \T_n \rvert} \sum_{t \in R_n} \alpha(t)w(t)
 \end{align}
 We define $f(s)= \frac{1}{1-s}$ as in Example \ref{ex:1} so that  $f^{(k)}(0) = k!$.  By Theorem \ref{Butcher} the solution to 
-\[
+\begin{equation}\label{eq:5}
  x(s) = \int_0^s = \frac{1}{1-x(s')} ds'
-\]
+\end{equation}
 is
-\[
+\begin{equation}\label{eq:7}
  x(s) = \sum_{t \in \R} \frac{s^{\lvert t \rvert}}{\lvert t \rvert !}\alpha(t)w(t)
+\end{equation}
+We may restate Equation \ref{eq:5} as $x'(s) = \frac{1}{1-x(s)}$ which is a first order, non-linear differential equation with 
+solution
+\begin{equation}\label{eq:6}
+  x(s) = 1 \pm (c_1 -2s +1)^{\frac{1}{2}}
+\end{equation}
+where $c_1$ is a constant to be determined.  Since (by Equation \ref{eq:5}) $x(0) = 0$ we may deduce that $c_1 = 0$.  By using the 
+binomial expantion of Equation \ref{eq:6} and comparing with Equation \ref{eq:7} we find that,
+\[
+ \sum_{\lvert t \rvert = n}\alpha(t)w(t) = \prod_{i=1}^{n-1} (2i-1)
 \]
+Note that $\prod_{i=1}^{n-1} (2i-1) = (2n-3)!!$ hence using factorial identities and Stirling's approximation 
+\begin{align}
+ \frac{(2n-3)!!}{(n-1)!} &= \frac{(2n - 3)!}{(n-1)!^2 2^{n-1}} \\
+ & = b %%%%Finish this off
+\end{align}
 
-
-
+Therefore,
+\[
+ \mathbb{E}_{\T,n}(\sigma(t)) < blah 
+\]
+By Jensen's inequality,  %%Perhaps some background on Jensen's inequality
+\[
+ \mathbb{E}_{\T,n}(\sigma(t)^{\frac{1}{n}}) < blah^{\frac{n-1}{n}} = \text{constant as required}
+\]
+It is interesting to compare the expected value of $\sigma(t)^{\frac{1}{n}}$ with the typcial value of $\sigma(t)^{\frac{1}{n}}$ 
+for random recursive trees since this will illuminate the nature of the distribution of automorphism group orders.  
+ 
+Consider the following alternative decription of random recursive trees as a growing tree process:  A \emph{random recursive 
+tree}, $ t \in \T_n$ can be written as a nested sequence of random recursive trees:
+\[t = t^1 \subset t^2 \subset \dots \subset t^n.\]
+such that at initial time $s=1$ the tree $t^1$ is the random recursive tree with 1 vertex and no edges and subsequently at times 
+$s = 2,3,\dots,n$ a vertex, $v$, is chosen from the set vertices, $V^{(s-1)}$, of tree $t^{(s-1)}$ uniformly at random and a 
+new vertex labelled $t$ is attached to $v$ via an edge.  
+\begin{remk}
+ The interpretation, above, makes it clear why we name this family; \emph{random} recursive trees.  It also makes obvious the 
+ observation that $\lvert \T_n \rvert  = (n-1)!$ since at time $s$ there are $s-1$ possible vertices for $v$ to be attached.  
+\end{remk}
+Let $t = \{t^s\}_{s\geq 1}$ be a random recursive tree and $X_{s,i}$ be the number of vertices of outdegree $i-1$ in $t^s$.
+ 
+\begin{thm}
+ In the limit as $s \rightarrow \infty$, almost surely $\frac{X_{s,i}}{s} \rightarrow 2^{-(i+1)}$. 
+\end{thm}
+\begin{proof}
+ See Janson \ref{}
+\end{proof}
+%As a corollary to this, in the limit as $s \rightarrow \infty$, almost surely $\frac{X_{s,i}}{s} \rightarrow 2^{-(i+1)}$. 
+%%Be careful....might have already done the hard work....
+\section{Conclusions}
 \end{document}
