@@ -5,15 +5,33 @@
 \DeclareMathOperator{\V}{\mathcal{V}}
 \DeclareMathOperator{\Aut}{Aut}
 \usepackage{amssymb}
+\title{Automorphisms of Random Recursive Trees}
+\author{David Matthews}
 \begin{document}
+\maketitle
 \section{Introduction}
-Graph automorphisms are essential to understanding enumerative properties of graphs.  The knowledge that an exact formulation of 
-the number of rooted unlabelled trees stands testement to the difficulty in understanding automorphisms of trees.  
+Graph automorphisms are essential to understanding enumerative properties of graphs.  An exact formulation of 
+the number of rooted unlabelled trees is unknown which stands testement to the difficulty in understanding tree automorphisms.  
+An intriguing 
+relationship between random Fibonacci sequences and automorphism groups coming from a family of trees called random recursive trees 
+provides further motivation, if we needed any, to investigate automorphism groups of trees \cite{macarthur2006}.  We exploit a geometric interpretation of 
+a graph automorphism in which subgroups of the automorphism group are associated with certain subtrees to give bounds for the 
+expected order of the automorphism group of a random recursive tree of order $n$. We also disprove a conjecture of MacArthur 
+\cite{macarthur} which states that the automorphsim can be split in a particulary pleasing way.
+
+In Section \ref{sec:RootedTrees} we introduce serveral families of increasing trees and we describe the relationship between them 
+using serveral recursively defined functions.  In Section \ref{sec:aut} we give a geometric interpretation of the automorphism group and a 
+direct product decomposition in which particular subgroups can be associated with certain subtrees. We also state Macarthur's conjecture.  
+In Section \ref{sec:func} we describe two families of recursively defined functions, inductive maps and elementary differentials, from a collection, $\T$ of trees,  
+$f:\T \rightarrow \mathbb{R}$ and describe how these may be manipululated to calculate properties of trees such as order, path length and 
+number of leaves.  In Section \ref{sec:bounds} we use inductive maps and elementary differentials to provide upper and lower bounds on the 
+expected order of the order of a family of trees called random recursive trees.  In Section \ref{sec:disproof}  we disprove the conjecture 
+of MacArthur and we make concluding remarks in Section \ref{sec:conc}.  
 
 
-\section{Rooted Trees}
+\section{Rooted Trees}\label{sec:RootedTrees}
  A \emph{rooted tree} is a triple $t = (r,V,E)$, such that $(V,E)$ is a finite, simple connected graph without cycles with 
- vertex set $V$ and edge set $E$. A vertex, $r \in V$, is selected from $V$ and called the \emph{root}. By convention each edge is directed away from $r$.  We denote the
+ vertex set $V$ and edge set $E$ \cite{tucker}. A vertex, $r \in V$, is selected from $V$ and called the \emph{root}. By convention each edge is directed away from $r$.  We denote the
  order of a tree, $t$, by $\lvert t \rvert$ and the set of order $n$ rooted trees is denoted $\R_n$.  In addition we define 
  $R : = \bigcup R_n$.
  
@@ -24,16 +42,18 @@ is a bijective map.  We denote the set of order $n$ labelled rooted trees by $\L
 For any pair of vertices $u$ and $v$ of a rooted tree we write $u \leq v$ if $u$ lies on the unique shortest path from $r$ to $v$.  A 
 \emph{random recursive tree} is a quadruple $t = (r,V,E,l)$ such that $t$ is a labelled rooted tree and $l$ is a labelling 
 such that if $u \leq v$ then $l(u) < l(v)$. 
-We denote the set of order $n$ random recursive trees by $\T_n$ and we define $\T = \bigcup \T_n$. 
+We denote the set of order $n$ random recursive trees by $\T_n$ and we define $\T = \bigcup \T_n$. Random recursive trees are also 
+known as ``heap-ordered trees''.  
 
 %%%%%Define the set of plane trees
 
 Two rooted trees $t_1$ and $t_2$ with roots $r_1$ and $r_2$ and vertex sets $V(t_1)$ and $V(t_2)$ respectively are said to be
 isomorphic if there exists a bijection $f: V(t_1) \rightarrow V(t_2)$ such that 
-vertices $u,v \in V(t_1)$ are adjacent if and only if $f(u),f(v) \in V(t_2)$ are adjacent and $f(r_1) = r_2$. If 
+vertices $u,v \in V(t_1)$ are adjacent if and only if $f(u),f(v) \in V(t_2)$ are adjacent and $f(r_1) = r_2$ \cite{harary}. If 
 $V(t_1) = V(t_2)$ then $f$ is called a rooted tree automorphism.  The set of automorphisms of a tree, $t$, together with 
 composition of maps forms a group denoted $\Aut(t)$.  The order of the automorphsim group is 
-\[\sigma(t) := \lvert \Aut(t) \rvert\] 
+\[\sigma(t) := \lvert \Aut(t) \rvert,\]
+notation taken from \cite{Butcher2008}. 
 Consider a map $\phi: \La \rightarrow R$ that simply forgets the labels of a labelled by mapping
 \[
  (r,V,E,L) \mapsto (r,V,E)
@@ -50,7 +70,7 @@ Since $\T \leq \La$ we denote by $\psi$ the restriction of $\phi$ to random recu
 \[
  \alpha(t) := \lvert \psi^{-1}(t) \rvert 
 \]
-however, to provide a result analagous to Equation \ref{eq:1} we require several additional definitions. 
+The notation $\alpha(t)$ is also found in (for example) \cite{brouder,butche1963,mazza}.  To provide a result analagous to Equation \ref{eq:1} we require several additional definitions. 
 
 Let $t_1,t_2,\dots,t_k$ be a forest of rooted trees: the rooted tree $B^{+}(t_1,t_2,\dots,t_k)$ is built from this forest by 
 introducing a new vertex, $r$ (the root of $B^{+}(t_1,t_2,\dots,t_k)$), and joining the roots of each tree $t_1,t_2,\dots,t_k$ 
@@ -66,6 +86,7 @@ another: We define the tree factorial $t!$ recursively
  \bullet! &=  1  \\
  t ! &= \lvert t \rvert \prod_{i=1}^k t_i !
 \end{align}
+The notation $t!$ is taken from Kreimer \cite{kreimer} because $t!$ generalises the factorial of a number.
 
 \begin{ex}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Include a few examples%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,7 +107,7 @@ For a rooted tree $t$,
  Therefore the factor we should divide out by is precisely $t!$.  In addition, to calculate the number of isomorphism classes of 
  random recursive trees we must again divide out by $\sigma(t)$.
 \end{proof}
-
+Alternatively see \cite{butcher2008} for a proof of Lemma \ref{lem:alpha}.
 Finally, let $\chi: \F \rightarrow \R$ be the map that ``forgets'' the embedding of a rooted plane tree.  It is clear that $\chi$ 
 is surjective but not injective hence we define
 \[
@@ -126,7 +147,7 @@ There are
 non-isomorphic possibilities for the ordering of the children of $v$.
 \end{proof}
 
-\section{Automorphisms of Trees}
+\section{Automorphisms of Trees}\label{sec:aut}
 In this section we will describe a direct product decomposition of the automorphism group of a tree, $t$, in which factors of the direct product can be associated with particular induced subtrees of $t$.  
 
 Recall that a (rooted) tree automorphism is a permutation of vertices that preserves adjacency and the root.  It is a result of P\'{o}lya that automorphism 
@@ -135,14 +156,14 @@ be a rooted tree and consider the following decomposition,
 \begin{equation}\label{eq:decomposition}
  \Aut(t) \cong A_1 \times A_2 \times \dots A_p \times B_1 \times B_2 \times \dots \times B_q  
 \end{equation}
-where each factor $A_i$ is isomorphic to a symmetric group and each $B_i$ is isomorphic to the wreath product of a group $G \in \mathcal{W}$.  In \cite{} MacArthur, 
+where each factor $A_i$ is isomorphic to a symmetric group and each $B_i$ is isomorphic to the wreath product of a group $G \in \mathcal{W}$.  In \cite{macarthur} MacArthur, 
 Sanchez-Garcia and Anderson showed that the decomposition of $\Aut(t)$ described in Equation \label{eq:decomposition} has a geometric interpretation.  An 
 automorphism group, $\Aut(t)$ may be decomposed by partitioning the set of generators $S$ of $\Aut(t)$ into support-disjoint subsets 
 $S = S_1 \cup S_2 \cup \dots \cup S_r$ and writing
 \begin{equation}\label{eq:geometric}
  \Aut(t) = H_1 \times H_2 \times \dots \times H_r
 \end{equation}
-where each $H_i$ is generated by $S_i$.  This, \emph{geometric decomposition} is shown \cite{} to be unique and irreducible (each $H_i$ cannot be written as the direct product of support-disjoint subgroups) hence the geometric decomposition is well defined. We call each $H_i$ in the geometric decompostion of $\Aut(t)$ a \emph{geometric factor}. A symmetric subtree is the induced subtree of $t$ on the support of a geometric factor.
+where each $H_i$ is generated by $S_i$.  This, \emph{geometric decomposition} is shown \cite{macarthur} to be unique and irreducible (each $H_i$ cannot be written as the direct product of support-disjoint subgroups) hence the geometric decomposition is well defined. We call each $H_i$ in the geometric decompostion of $\Aut(t)$ a \emph{geometric factor}. A symmetric subtree is the induced subtree of $t$ on the support of a geometric factor.
 \begin{ex}
 \begin{itemize}
  \item[(i)]  A $k$-star is an induced subtree consisting of a vertex adjacent to $k$ vertices of outdegree 0.  A $k$-star is a symmetric subtree that corresponds to a geometric factor $S_k$ (the symmetric group on $k$ objects).  
@@ -167,7 +188,7 @@ The order, $\sigma(t)$, of an automorphism group can also be split as follows:
 \[
 \sigma(t)  =  \lvert \mathcal{E}(t) \rvert\lvert \mathcal{C}(t)\rvert 
 \]
-This begs the question: does the order of either the elementary or the complex subgroup dominate the other?  MacArthur \cite{Bens} made the following additional conjecture:
+This begs the question: does the order of either the elementary or the complex subgroup dominate the other?  MacArthur \cite{macarthur} made the following additional conjecture:
 \begin{con}\label{conj:2}
  Let $\{T_t\}_{t=1}^{n}$ be a RRT. In the limit as $t \rightarrow \infty$, $\lvert \mathcal{E}(T_t)\rvert^{\frac{1}{t}}  = \mathcal{V}$, while in the limit as $t \rightarrow \infty$, $\lvert \mathcal{C}(T_t)\rvert^{\frac{1}{t}}  = 1$.
  
@@ -176,7 +197,7 @@ This begs the question: does the order of either the elementary or the complex s
  % hence if conjecture \ref{conj:2} were true then to prove conjecture \ref{conj:1} it is enough to calculate the limiting behaviour of $(n,k)$-stars.  
 %add to conclusions etc.  
 
-\section{Functions on Trees}
+\section{Functions on Trees}\label{sec:func}
 In this section we will build up a 3-part tool kit of functions $f: \R \rightarrow \mathbb{R}$ which will be used to calculate 
  properties of rooted trees such as path length and order.  
  
@@ -186,7 +207,7 @@ In this section we will build up a 3-part tool kit of functions $f: \R \rightarr
  collection of random recursive trees such that each vertex is permitted to have outdegree $r$ only if $s_r = 1$. 
 \end{defn}
 \begin{remk}
- For a more general setting see \cite{Bergeron}.
+ For a more general setting see \cite{bergeron}.
 \end{remk}
 The \emph{degree function} associated with a sequence $s= \{ s_r\}_{r=0}^{\infty}$ is the exponential generating function (EGF) defined as follows:
 \[
@@ -239,7 +260,7 @@ Given a tree function $s$ and a variety $\mathcal{V}$ the EGF of $s$ over $\math
  \end{itemize}
  \end{ex}
 
-In order to calculate $S(z)$ easily and effectively we appeal to the following Theorem of Bergeron \cite{Bergeron}.
+In order to calculate $S(z)$ easily and effectively we appeal to the following Theorem of Bergeron \cite{bergeron}.
 \begin{thm}\label{thm:inductivemaps}
  \[
  S(z) = Y'(z) \int_{0}^{z} \frac{F'(t)}{Y'(t)} dt
@@ -257,7 +278,8 @@ where $F(z)$ is defined from $\V$ and the sequence $f$
  \[
   \frac{d}{ds}{y(s)} = f(y(s))
  \]
-where $y(s_0) = y_0$.  We use the notation $f'(y)$ for the derivative $\frac{d}{dy}f(y)$ and note that $f'(y)$ is a linear map (the Jacobian), the second derivative $f''(y)$ is a billinear map and so on. 
+where $y(s_0) = y_0$.  We use the notation $f'(y)$ for the derivative $\frac{d}{dy}f(y)$ and note that $f'(y)$ is a linear map (the Jacobian), the second derivative $f''(y)$ is a billinear map and so on.   
+We follow Butcher and make the following definition \cite{Butcher2008}.
 
 \begin{defn}
 Let $t = B^{+}(t_1,t_2,\dots,t_k)$ be  a rooted tree. An \emph{elementary differential} is a map  $F(t):  \mathbb{R}^n \rightarrow \mathbb{R}^n$ defined 
@@ -280,7 +302,7 @@ is
 \end{theorem}
 
 \begin{proof}
- See \cite{Butcher,Brouder}
+ See \cite{butcher2008,brouder}
 \end{proof}
 
 \begin{ex}\label{ex:1}
@@ -289,7 +311,7 @@ is
 
 %\subsection{Bare Green Functions} do we really need to include these????????(probably we aught to!)
 
-\section{Bounds on the expected value of $\Aut(t)$}
+\section{Bounds on the expected value of $\Aut(t)$}\label{sec:bounds}
 \subsection{A lower bound}
 In this section we will calculate the expected contribution the geometric factors, $G_k$, corresponding to $k$-stars which will be a 
 lower bound for the expected value of $\Aut(t)$.  Given a  tree $t$ the number of automorphisms $\alpha \in \Aut(t)$ which correspond 
@@ -411,7 +433,7 @@ Let $t = \{t^s\}_{s\geq 1}$ be a random recursive tree and $X_{s,i}$ be the numb
 \end{proof}
 %As a corollary to this, in the limit as $s \rightarrow \infty$, almost surely $\frac{X_{s,i}}{s} \rightarrow 2^{-(i+1)}$. 
 %%Be careful....might have already done the hard work....
-\section{A disproof of Conjecture \ref{conj:2}}
+\section{A disproof of Conjecture \ref{conj:2}}\label{sec:disproof}
 
 In this section we will disprove Conjecture \ref{conj:2} by demonstrating that there exists a symmetric subtree corresponding to a geometric factor $H$  contained in the complex subgroup of the automorphism group such that the expectation of $\lvert H \rvert^{\frac{1}{n}}$ over $\T_n$ is
   \[
@@ -457,5 +479,9 @@ Since exponential is a convex function,
  1 < \exp\left( \frac{10\log(8)}{8!}\right) \leq \mathbb{E}_{\T_n}\left( \lvert H_i \rvert^{\frac{1}{n}}\right) \leq \mathbb{E}_{\T_n} \left( \lvert \mathcal{C}(t) \rvert^{\frac{1}{n}}   \right)
 \]
 by Jensen's inequality; thus disproving Conjecture \ref{conj:2}.  
-\section{Conclusions}
+\section{Conclusions}\label{sec:conc}
+
+\bibliographystyle{amsalpha}
+\bibliography{Bounds.bib}
+
 \end{document}

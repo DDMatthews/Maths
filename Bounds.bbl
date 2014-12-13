@@ -5,14 +5,48 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{BFS92}
+\begin{thebibliography}{MSGA08}
 
 \bibitem[BFS92]{bergeron}
 Fran{\c{c}}ois Bergeron, Philippe Flajolet, and Bruno Salvy, \emph{Varieties of
   increasing trees}, Springer, 1992.
 
-\bibitem[Bro00]{Brouder}
+\bibitem[Bro00]{brouder}
 Ch~Brouder, \emph{Runge--kutta methods and renormalization}, The European
   Physical Journal C-Particles and Fields \textbf{12} (2000), no.~3, 521--534.
+
+\bibitem[But63]{butcher1963}
+John~C Butcher, \emph{Coefficients for the study of runge-kutta integration
+  processes}, Journal of the Australian Mathematical Society \textbf{3} (1963),
+  no.~02, 185--201.
+
+\bibitem[But08]{Butcher2008}
+\bysame, \emph{Numerical methods for ordinary differential equations}, John
+  Wiley \& Sons, 2008.
+
+\bibitem[HP73]{harary}
+Frank Harary and Edgar~M Palmer, \emph{Graphical enumeration}, Tech. report,
+  DTIC Document, 1973.
+
+\bibitem[Kre99]{kreimer}
+Dirk Kreimer, \emph{Chen's iterated integral represents the operator product
+  expansion}, arXiv preprint hep-th/9901099 (1999).
+
+\bibitem[MA06]{macarthur2006}
+Ben~D MacArthur and James~W Anderson, \emph{Symmetry and self-organization in
+  complex systems}, arXiv preprint cond-mat/0609274 (2006).
+
+\bibitem[Maz04]{mazza}
+Christian Mazza, \emph{Simply generated trees, b-series and wigner processes},
+  Random Structures \& Algorithms \textbf{25} (2004), no.~3, 293--310.
+
+\bibitem[MSGA08]{macarthur}
+Ben~D MacArthur, Rub{\'e}n~J S{\'a}nchez-Garc{\'\i}a, and James~W Anderson,
+  \emph{Symmetry in complex networks}, Discrete Applied Mathematics
+  \textbf{156} (2008), no.~18, 3525--3531.
+
+\bibitem[Tat84]{tucker}
+Alan Tucker, Combinatorial analysis, and Graph theory, \emph{Applied
+  combinatorics}, vol. 287, Wiley New York, 1984.
 
 \end{thebibliography}
