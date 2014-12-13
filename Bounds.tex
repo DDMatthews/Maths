@@ -7,10 +7,25 @@
 \usepackage{amssymb}
 \begin{document}
 \section{Introduction}
+Graph automorphisms are essential to understanding enumerative properties of graphs.  The knowledge that an exact formulation of 
+the number of rooted unlabelled trees stands testement to the difficulty in understanding automorphisms of trees.  An intriguing 
+relationship between random Fibonacci sequences and automorphism groups coming from a family of trees called random recursive trees 
+provides further motivation, if we needed any, to investigate tree automorphism groups.  We exploit a geometric interpretation of 
+a graph automorphism in which subgroups of the automorphism group are associated with certain subtrees to give bounds for the 
+expected order of the automorphism group of a random recursive tree of order $n$. We also disprove a conjecture of MacArthur 
+\cite{} which states that the automorphsim can be split in a particulary pleasing way.
+
+In Section \ref{sec:RootedTrees} we introduce serveral families of increasing trees and we describe the relationship between them 
+using serveral recursively defined functions.  In Section \ref{sec:aut} we give a geometric interpretation of the automorphism group and a 
+direct product decomposition in which particular subgroups can be associated with certain subtrees. We also state Macarthur's conjecture.  
+In Section \ref{sec:func} we describe two families of recursively defined functions, inductive maps and elementary differentials, from a collection, $\T$ of trees,  
+$f:\T \rightarrow \mathbb{R}$ and describe how these may be manipululated to calculate properties of trees such as order, path length and 
+number of leaves.  In Section \ref{sec:bounds} we use inductive maps and elementary differentials to provide upper and lower bounds on the 
+expected order of the order of a family of trees called random recursive trees.  In Section \ref{sec:disproof}  we disprove the conjecture 
+of MacArthur and we make concluding remarks in Section \ref{sec:conc}.  
 
 
-
-\section{Rooted Trees}
+\section{Rooted Trees}\label{sec:RootedTrees}
  A \emph{rooted tree} is a triple $t = (r,V,E)$, such that $(V,E)$ is a finite, simple connected graph without cycles with 
  vertex set $V$ and edge set $E$. A vertex, $r \in V$, is selected from $V$ and called the \emph{root}. By convention each edge is directed away from $r$.  We denote the
  order of a tree, $t$, by $\lvert t \rvert$ and the set of order $n$ rooted trees is denoted $\R_n$.  In addition we define 
@@ -125,7 +140,7 @@ There are
 non-isomorphic possibilities for the ordering of the children of $v$.
 \end{proof}
 
-\section{Automorphisms of Trees}
+\section{Automorphisms of Trees}\label{sec:aut}
 In this section we will describe a direct product decomposition of the automorphism group of a tree, $t$, in which factors of the direct product can be associated with particular induced subtrees of $t$.  
 
 Recall that a (rooted) tree automorphism is a permutation of vertices that preserves adjacency and the root.  It is a result of P\'{o}lya that automorphism 
@@ -175,7 +190,7 @@ This begs the question: does the order of either the elementary or the complex s
  % hence if conjecture \ref{conj:2} were true then to prove conjecture \ref{conj:1} it is enough to calculate the limiting behaviour of $(n,k)$-stars.  
 %add to conclusions etc.  
 
-\section{Functions on Trees}
+\section{Functions on Trees}\label{sec:func}
 In this section we will build up a 3-part tool kit of functions $f: \R \rightarrow \mathbb{R}$ which will be used to calculate 
  properties of rooted trees such as path length and order.  
  
@@ -288,7 +303,7 @@ is
 
 %\subsection{Bare Green Functions} do we really need to include these????????(probably we aught to!)
 
-\section{Bounds on the expected value of $\Aut(t)$}
+\section{Bounds on the expected value of $\Aut(t)$}\label{sec:bounds}
 \subsection{A lower bound}
 In this section we will calculate the expected contribution the geometric factors, $G_k$, corresponding to $k$-stars which will be a 
 lower bound for the expected value of $\Aut(t)$.  Given a  tree $t$ the number of automorphisms $\alpha \in \Aut(t)$ which correspond 
@@ -410,7 +425,7 @@ Let $t = \{t^s\}_{s\geq 1}$ be a random recursive tree and $X_{s,i}$ be the numb
 \end{proof}
 %As a corollary to this, in the limit as $s \rightarrow \infty$, almost surely $\frac{X_{s,i}}{s} \rightarrow 2^{-(i+1)}$. 
 %%Be careful....might have already done the hard work....
-\section{A disproof of Conjecture \ref{conj:2}}
+\section{A disproof of Conjecture \ref{conj:2}}\label{sec:disproof}
 
 In this section we will disprove Conjecture \ref{conj:2} by demonstrating that there exists a symmetric subtree corresponding to a geometric factor $H$  contained in the complex subgroup of the automorphism group such that the expectation of $\lvert H \rvert^{\frac{1}{n}}$ over $\T_n$ is
   \[
@@ -456,5 +471,5 @@ Since exponential is a convex function,
  1 < \exp\left( \frac{10\log(8)}{8!}\right) \leq \mathbb{E}_{\T_n}\left( \lvert H_i \rvert^{\frac{1}{n}}\right) \leq \mathbb{E}_{\T_n} \left( \lvert \mathcal{C}(t) \rvert^{\frac{1}{n}}   \right)
 \]
 by Jensen's inequality; thus disproving Conjecture \ref{conj:2}.  
-\section{Conclusions}
+\section{Conclusions}\label{sec:conc}
 \end{document}
