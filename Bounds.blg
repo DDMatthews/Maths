@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: Bounds.aux
+Case mismatch error between cite keys Bergeron and bergeron
+---line 21 of file Bounds.aux
+ : \citation{Bergeron
+ :                   }
+I'm skipping whatever remains of this command
+The style file: amsalpha.bst
+Database file #1: Bounds.bib.bib
+Warning--I didn't find a database entry for "Bens"
+Warning--I didn't find a database entry for "Butcher"
+You've used 2 entries,
+            2624 wiz_defined-function locations,
+            574 strings with 4630 characters,
+and the built_in function-call counts, 754 in all, are:
+= -- 63
+> -- 33
+< -- 1
++ -- 11
+- -- 11
+* -- 62
+:= -- 131
+add.period$ -- 2
+call.type$ -- 2
+change.case$ -- 12
+chr.to.int$ -- 2
+cite$ -- 2
+duplicate$ -- 30
+empty$ -- 59
+format.name$ -- 14
+if$ -- 144
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 5
+newline$ -- 16
+num.names$ -- 6
+pop$ -- 15
+preamble$ -- 1
+purify$ -- 14
+quote$ -- 0
+skip$ -- 21
+stack$ -- 0
+substring$ -- 39
+swap$ -- 2
+text.length$ -- 1
+text.prefix$ -- 1
+top$ -- 0
+type$ -- 12
+warning$ -- 0
+while$ -- 7
+width$ -- 4
+write$ -- 30
+(There was 1 error message)

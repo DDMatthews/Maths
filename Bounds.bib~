@@ -1,0 +1,37 @@
+@book{bergeron,
+  title={Varieties of increasing trees},
+  author={Bergeron, Fran{\c{c}}ois and Flajolet, Philippe and Salvy, Bruno},
+  year={1992},
+  publisher={Springer}
+}
+@article{brouder,
+  title={Runge--Kutta methods and renormalization},
+  author={Brouder, Ch},
+  journal={The European Physical Journal C-Particles and Fields},
+  volume={12},
+  number={3},
+  pages={521--534},
+  year={2000},
+  publisher={Springer}
+}
+@article{mazza,
+  title={Simply generated trees, B-series and Wigner processes},
+  author={Mazza, Christian},
+  journal={Random Structures \& Algorithms},
+  volume={25},
+  number={3},
+  pages={293--310},
+  year={2004},
+  publisher={Wiley Online Library}
+}
+@article{macarthur2008symmetry,
+  title={Symmetry in complex networks},
+  author={MacArthur, Ben D and S{\'a}nchez-Garc{\'\i}a, Rub{\'e}n J and Anderson, James W},
+  journal={Discrete Applied Mathematics},
+  volume={156},
+  number={18},
+  pages={3525--3531},
+  year={2008},
+  publisher={Elsevier}
+}
+

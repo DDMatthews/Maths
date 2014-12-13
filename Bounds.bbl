@@ -1,0 +1,18 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{BFS92}
+
+\bibitem[BFS92]{bergeron}
+Fran{\c{c}}ois Bergeron, Philippe Flajolet, and Bruno Salvy, \emph{Varieties of
+  increasing trees}, Springer, 1992.
+
+\bibitem[Bro00]{Brouder}
+Ch~Brouder, \emph{Runge--kutta methods and renormalization}, The European
+  Physical Journal C-Particles and Fields \textbf{12} (2000), no.~3, 521--534.
+
+\end{thebibliography}

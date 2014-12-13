@@ -5,7 +5,10 @@
 \DeclareMathOperator{\V}{\mathcal{V}}
 \DeclareMathOperator{\Aut}{Aut}
 \usepackage{amssymb}
+\title{Automorphisms of Random Recursive Trees}
+\author{David Matthews}
 \begin{document}
+\maketitle
 \section{Introduction}
 Graph automorphisms are essential to understanding enumerative properties of graphs.  The knowledge that an exact formulation of 
 the number of rooted unlabelled trees stands testement to the difficulty in understanding automorphisms of trees.  An intriguing 
@@ -200,7 +203,7 @@ In this section we will build up a 3-part tool kit of functions $f: \R \rightarr
  collection of random recursive trees such that each vertex is permitted to have outdegree $r$ only if $s_r = 1$. 
 \end{defn}
 \begin{remk}
- For a more general setting see \cite{Bergeron}.
+ For a more general setting see \cite{bergeron}.
 \end{remk}
 The \emph{degree function} associated with a sequence $s= \{ s_r\}_{r=0}^{\infty}$ is the exponential generating function (EGF) defined as follows:
 \[
@@ -472,4 +475,8 @@ Since exponential is a convex function,
 \]
 by Jensen's inequality; thus disproving Conjecture \ref{conj:2}.  
 \section{Conclusions}\label{sec:conc}
+
+\bibliographystyle{amsalpha}
+\bibliography{Bounds.bib}
+
 \end{document}
