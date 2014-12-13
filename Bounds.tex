@@ -70,7 +70,7 @@ another: We define the tree factorial $t!$ recursively
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Include a few examples%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{ex}
 
-\begin{lem}
+\begin{lem}\label{lem:alpha}
 For a rooted tree $t$,
  \begin{equation}\label{eq:2}
 \alpha(t) = \frac{\lvert t \rvert !}{t!\sigma(t)}
@@ -193,7 +193,7 @@ The \emph{degree function} associated with a sequence $s= \{ s_r\}_{r=0}^{\infty
 \]
 %%%%%%%BAD Notation remove phi from earlier or here
 
-\begin{ex}
+\begin{ex}\label{ex:inductivemaps}
  The collection, $\mathcal{B}$, of increasing binary trees are the set of all random recursive trees such that each vertex has 
  outdegree either 0,1 or 2.  The degree function for increasing binay trees is
  \[
@@ -239,7 +239,7 @@ Given a tree function $s$ and a variety $\mathcal{V}$ the EGF of $s$ over $\math
  \end{ex}
 
 In order to calculate $S(z)$ easily and effectively we appeal to the following Theorem of Bergeron \cite{Bergeron}.
-\begin{thm}
+\begin{thm}\label{thm:inductivemaps}
  \[
  S(z) = Y'(z) \int_{0}^{z} \frac{F'(t)}{Y'(t)} dt
  \]
@@ -286,11 +286,66 @@ is
  Let $y_0 = s_0 = 0$  and consider the case $f(s) = \frac{1}{1-s}$ so that  $f^{(k)}(0) = k!$ then $F(t) = w(t)$.
 \end{ex}
 
-\subsection{Bare Green Functions}
+%\subsection{Bare Green Functions} do we really need to include these????????(probably we aught to!)
 
 \section{Bounds on the expected value of $\Aut(t)$}
 \subsection{A lower bound}
-\subsection{A disproof of Conjecture \ref{conj:2}}
+In this section we will calculate the expected contribution the geometric factors, $G_k$, corresponding to $k$-stars which will be a 
+lower bound for the expected value of $\Aut(t)$.  Given a  tree $t$ the number of automorphisms $\alpha \in \Aut(t)$ which correspond 
+to a $k$-star for any $k$ is written $\sigma_*(t)$.
+
+Consider the family, $s^k$ of inductive maps over variety $\T$ that are defined by the sequences $f^k_n = \delta_{k,n}$.  Given a tree 
+$t \in \T$ the map $s^{k}(t)$ counts the number of induced subtrees of $t$ that have order $k$ (as we have seen in Example 
+\ref{ex:inductivemaps}). 
+
+Following Theorem \ref{thm:inductivemaps}, to each map $s^k$ we associate the function,
+\begin{align}
+ F_k(z) &= \sum_{n \geq 1} f_n^k V_n \frac{z^{n}}{n!} \\
+ &= \frac{z^k}{k}
+\end{align}
+thus $F_k'(z) = z^{k-1}$.  By Theorem \ref{thm:inductivemaps},
+\begin{align}
+ \sum_{t \in \T} s^k(t) \frac{z^{\lvert t vert}}{\lvert t \rvert !}  &= \frac{1}{1-z}\int_{0}^{z}t^{k-1}(1-t) dt \\
+ &= \frac{1}{1-z}\left(\frac{z^k}{k} - \frac{z^{k+1}}{k+1} \right)  \\
+ &= \frac{z^{k}}{k} + \sum_{i \geq k+1} \frac{z^i}{(k)(k+1)}
+\end{align}
+hence for $n \geq k+1$,
+\[
+ \sum_{t \in \T_n} s^k(t) = \frac{n!}{k(k+1)}.
+\]
+Let $\hat{t}_k \in \T_k$ be a random recursive tree isomorphic to a $(k-1)$-star.  Since $\hat{t}_k ! = k$ and $\sigma(\hat{t}_k) = (k-1)!$, 
+by Lemma \ref{lem:alpha} 
+\[
+ \alpha(\hat{t}_k) = 1
+\]
+i.e. there is only one isomorphism class of random recursive trees on $k$ vertices isomomorphic to $\hat{t}_k$.  Fik $k \geq 3$ 
+and suppose that $t = (r,V,E,l)$ is a random recursive tree and $t \in \T_n$ for some $n >k$.  Suppose $t$ contains an induced 
+subtree, $t_v = (v,V_v,E_v,l_v)$ that has order $k$ hence $v \neq r$.  Given a set $S$ and a subset $R \leq S$ we define $\bar{R}$ 
+to be the complement of $R$ in $S$.  We further define the complement of $t_v$ in $t$ to be 
+\[\bar{t_v} = (r, \bar{V_v},\bar{E_v} \backslash{(v,f(v)},bar{l_v})\]
+where $f(v) \in E$ is the vertex adjacent to $v$ with a smaller label often called the father of $v$.  Notice that there exist $(k-1)!$ nonisomorphic trees $t \in \T_n$ 
+which consist of $\bar{t_v}$ and a random recursive tree of order $k$ joined to $\bar{t_v}$  via the edge $\{(v,f(v))\}$.
+
+Given a tree $t \in \T$ let $n_k(t)$ be the number of induced subtrees of $t$ isomorphic to $\hat{t}_k$,
+\[
+ \sum_{t \in \T_n}  = \frac{n!}{(k+1)!}
+\]
+by the argument above.  Since $\sigma(\hat{t_k}) = (k-1)!$,
+\begin{align}
+ \mathbb{E}_{\T_n}(\log(\lvert G_k \rvert^{\frac{1}{n}}) &= \frac{1}{\lvert \T_n \rvert}\sum_{t \in \T_n} \log((k-1)!^{\frac{n_k(t)}{n}}) \\
+ &= \frac{1}{(n-1)!}\sum_{t \in \T_n} \log((k-1)!)\frac{n_k(t)}{n} \\
+ &= \frac{\log(k-1)!}{(k+1)!}
+\end{align}
+By summing over all $k \geq 3$ we find that 
+\[
+\mathbb{E}_{\T_n}(\sigma_*(t)^{\frac{1}{n}})  = 
+ \sum_{k geq 3} \frac{\log(k-1)!}{(k+1)!}
+\]
+Finally, since $\exp$ is convex,  by Jensen's inequality
+\[
+ \exp\left(\sum_{k \geq 3}\left( \frac{\log(k-1)!}{(k+1)!} \right)\right) \leq \mathbb{E}_{\T_n}(\sigma(t)^{\frac{1}{n}}
+\]
+
 \subsection{An upper bound}
 In this section we will use B-series and Theorem \ref{thm:Butcher} to calculate an upper bound for the expected order 
 $\mathbb{E}_{\T,n}(\sigma(t))$ of an automorphism group of a random recursive tree $t$.  
@@ -355,5 +410,51 @@ Let $t = \{t^s\}_{s\geq 1}$ be a random recursive tree and $X_{s,i}$ be the numb
 \end{proof}
 %As a corollary to this, in the limit as $s \rightarrow \infty$, almost surely $\frac{X_{s,i}}{s} \rightarrow 2^{-(i+1)}$. 
 %%Be careful....might have already done the hard work....
+\section{A disproof of Conjecture \ref{conj:2}}
+
+In this section we will disprove Conjecture \ref{conj:2} by demonstrating that there exists a symmetric subtree corresponding to a geometric factor $H$  contained in the complex subgroup of the automorphism group such that the expectation of $\lvert H \rvert^{\frac{1}{n}}$ over $\T_n$ is
+  \[
+   \mathbb{E}_{\T_n}(\lvert H \rvert^{\frac{1}{n}}) >1
+  \]
+The symmetric subtree, $\hat{t}$, reticulated in Figure \ref{} on 7 vertices such that $\Aut(\hat{t}) \cong S_2 \wr S_2$ hence $\sigma(\hat{t}) = 8$.
+
+Consider the inductive map, $s$  (over the variety $\T$) defined by a sequence $f_n = \log(8)\delta_{n,7}$ and assume that $s$ has EGF
+\begin{equation}\label{eq:9}
+  S(z) = \sum_{t \in \T} s(t)\frac{z^{\lvert t \rvert}}{\lvert t \rvert !}
+\end{equation}
+
+
+By Theorem \ref{} $S(z)$ can also be expressed as follows:
+\[
+ S(z) = Y'(z) \int_0^z \frac{F'(z)}{Y'(z)} dt
+\]
+where $Y(z) = \frac{1}{1-z}$ and $F(z) = \frac{\log(8)t^7}{7}$, thus
+\[
+ S(z) = \frac{\log(8)}{(1-z)}\int_0^z(1-t)t^6 dt
+\]
+hence, for $n \geq 8$,
+\begin{equation}\label{eq:10}
+ S(z) = \sum_{n \geq 8} \frac{\log(8)z^n}{56}
+\end{equation}
+Let $\delta(t)$ denote the number of induced subtrees of some tree, $t$, that are order exactly 7.  By comparing Equation \ref{eq:9} and Equation \ref{eq:10},
+\[
+ \sum_{t \in \T_n}\log(8)\delta(t) = \frac{n!\log(8)}{56}
+\]
+Given a random recursive tree $t$ let $\epsilon(t)$ denote the number of induced subtrees of $t$ that are isomorphic to $\hat{t}$. Since $\alpha(\hat{t}) = 10$ and $\lvert \T_7 \rvert = 6!$ we may write,
+\[
+ \sum_{t \in \T_n}\log(8)\epsilon(t) = \frac{10\log(8)n!}{8!}
+\]
+Therefore the expected value, 
+\begin{align}
+ \mathbb{E}_{\T_n}(\log\left(\lvert H \rvert^{\frac{1}{n}}\right) &= \frac{1}{\T_n}\sum_{t \in \T_n} \log(8^{\frac{\epsilon(t)}{n}}) \\
+ &= \frac{1}{(n-1)!}\sum_{t \in \T_n} \frac{\log(8)\epsilon(t)}{n} \\
+ &= \frac{10\log(8)}{8!}
+\end{align}
+
+Since exponential is a convex function,
+\[
+ 1 < \exp\left( \frac{10\log(8)}{8!}\right) \leq \mathbb{E}_{\T_n}\left( \lvert H_i \rvert^{\frac{1}{n}}\right) \leq \mathbb{E}_{\T_n} \left( \lvert \mathcal{C}(t) \rvert^{\frac{1}{n}}   \right)
+\]
+by Jensen's inequality; thus disproving Conjecture \ref{conj:2}.  
 \section{Conclusions}
 \end{document}
