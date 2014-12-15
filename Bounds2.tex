@@ -1,0 +1,487 @@
+\input{preamble.tex}
+\DeclareMathOperator{\F}{\mathcal{F}}
+\DeclareMathOperator{\R}{\mathcal{R}}
+\DeclareMathOperator{\La}{\mathcal{L}}
+\DeclareMathOperator{\V}{\mathcal{V}}
+\DeclareMathOperator{\Aut}{Aut}
+\usepackage{amssymb}
+\title{Automorphisms of Random Recursive Trees}
+\author{David Matthews}
+\begin{document}
+\maketitle
+\section{Introduction}
+Graph automorphisms are essential to understanding enumerative properties of graphs.  An exact formulation of 
+the number of rooted unlabelled trees is unknown which stands testament to the difficulty in understanding tree automorphisms.  
+An intriguing 
+relationship between random Fibonacci sequences and automorphism groups coming from a family of trees called random recursive trees 
+provides further motivation, if we needed any, to investigate automorphism groups of trees \cite{macarthur2006}.  We exploit a geometric interpretation of 
+a graph automorphism in which subgroups of the automorphism group are associated with certain subtrees to give bounds for the 
+expected order of the automorphism group of a random recursive tree (also known as a heap-ordered tree) of order $n$. We also disprove a conjecture of MacArthur 
+\cite{macarthur} which states that the automorphism group can be split in a particularly pleasing way.
+
+In Section \ref{sec:RootedTrees} we introduce several families of increasing trees and we describe the relationship between them 
+using several recursively defined functions.  In Section \ref{sec:aut} we give a geometric interpretation of the automorphism group and a 
+direct product decomposition in which particular subgroups can be associated with certain subtrees. We also state MacArthur’s conjecture.  
+In Section \ref{sec:func} we describe two families of recursively defined functions; inductive maps and elementary differentials, from a collection, $\T$ of trees,  
+$f:\T \rightarrow \mathbb{R}$ and describe how these may be manipulated to calculate properties of trees such as order, path length and 
+number of leaves.  In Section \ref{sec:bounds} we use inductive maps and elementary differentials to provide upper and lower bounds on the 
+expected order of the order of a family of trees called random recursive trees.  In Section \ref{sec:disproof}  we disprove the conjecture 
+of MacArthur and we make concluding remarks in Section \ref{sec:conc}.  
+
+
+\section{Rooted Trees}\label{sec:RootedTrees}
+ A \emph{rooted tree} is a triple $t = (r,V,E)$, such that $(V,E)$ is a finite, simple connected graph without cycles with 
+ vertex set $V$ and edge set $E$ \cite{tucker}. A vertex, $r \in V$, is selected from $V$ and called the \emph{root}. By convention each edge is directed away from $r$.  We denote the
+ order of a tree, $t$, by $\lvert t \rvert$ and the set of order $n$ rooted trees is denoted $\R_n$.  In addition we define 
+ $R : = \bigcup R_n$.
+ 
+ A \emph{labelled rooted tree} is a quadruple $t = (r,V,E,L)$ such that $(r,V,E)$ is a rooted tree and 
+ \[L: V \longrightarrow \{1,2,\dots,\lvert t \rvert\}\] 
+is a bijective map.  We denote the set of order $n$ labelled rooted trees by $\La_n$ and we define $\La = \bigcup \La_n$.      
+
+For any pair of vertices $u$ and $v$ of a rooted tree we write $u \leq v$ if $u$ lies on the unique shortest path from $r$ to $v$.  A 
+\emph{random recursive tree} is a quadruple $t = (r,V,E,l)$ such that $t$ is a labelled rooted tree and $l$ is a labelling 
+such that if $u \leq v$ then $l(u) < l(v)$. 
+We denote the set of order $n$ random recursive trees by $\T_n$ and we define $\T = \bigcup \T_n$. Random recursive trees are also 
+known as ``heap-ordered trees''.  
+
+%%%%%Define the set of plane trees
+
+Two rooted trees $t_1$ and $t_2$ with roots $r_1$ and $r_2$ and vertex sets $V(t_1)$ and $V(t_2)$ respectively are said to be
+isomorphic if there exists a bijection $f: V(t_1) \rightarrow V(t_2)$ such that 
+vertices $u,v \in V(t_1)$ are adjacent if and only if $f(u),f(v) \in V(t_2)$ are adjacent and $f(r_1) = r_2$ \cite{harary}. If 
+$V(t_1) = V(t_2)$ then $f$ is called a rooted tree automorphism.  The set of automorphisms of a tree, $t$, together with 
+composition of maps forms a group denoted $\Aut(t)$.  The order of the automorphism group is 
+\[\sigma(t) := \lvert \Aut(t) \rvert,\]
+notation taken from \cite{Butcher2008}. 
+Consider a map $\phi: \La \rightarrow R$ that simply forgets the labels of a labelled by mapping
+\[
+ (r,V,E,L) \mapsto (r,V,E)
+\]
+The map $\phi$ is clearly surjective but not injective hence we define $\beta(t) = \lvert \phi^{-1}(t) \rvert$ to be the number of
+possible isomorphism classes of labellings of a rooted tree $t \in \R$. There are $\lvert t \rvert !$ possible labellings of a tree 
+$t \in \R$ hence there are  
+\begin{equation}\label{eq:1}
+  \beta(t) = \frac{\lvert t \rvert !}{\sigma(t)} 
+\end{equation}
+isomorphism classes of labellings of $t$.  
+
+Since $\T \leq \La$ we denote by $\psi$ the restriction of $\phi$ to random recursive trees and define
+\[
+ \alpha(t) := \lvert \psi^{-1}(t) \rvert 
+\]
+The notation $\alpha(t)$ is also found in (for example) \cite{brouder,butcher1963,mazza}.  To provide a result analogous to Equation \ref{eq:1} we require several additional definitions. 
+
+Let $t_1,t_2,\dots,t_k$ be a forest of rooted trees: the rooted tree $B^{+}(t_1,t_2,\dots,t_k)$ is built from this forest by 
+introducing a new vertex, $r$ (the root of $B^{+}(t_1,t_2,\dots,t_k)$), and joining the roots of each tree $t_1,t_2,\dots,t_k$ 
+to $r$ via an edge.  Since every tree $t$ can be written as $B^{+}(t_1,t_2,\dots,t_k)$ if $\lvert t \rvert > 1$ we henceforth 
+assume that each rooted tree $t = B^{+}(t_1,t_2,\dots,t_k)$ if $\lvert t \rvert >1$.  For convenience we will denote the rooted tree on 1 vertex 
+by $\bullet$.
+
+%%%WE can get rid of the order condition by following Connes and Kreimer and defining a rooted tree on no vertices
+
+We have already seen one function $f: \R \rightarrow \mathbb{R}$ on rooted trees ($f(t) = \lvert t \rvert$), let us consider 
+another: We define the tree factorial $t!$ recursively
+\begin{align}
+ \bullet! &=  1  \\
+ t ! &= \lvert t \rvert \prod_{i=1}^k t_i !
+\end{align}
+The notation $t!$ is taken from Kreimer \cite{kreimer} because $t!$ generalises the factorial of a number.
+
+\begin{ex}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Include a few examples%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{ex}
+
+\begin{lem}\label{lem:alpha}
+For a rooted tree $t$,
+ \begin{equation}\label{eq:2}
+\alpha(t) = \frac{\lvert t \rvert !}{t!\sigma(t)}
+ \end{equation}
+\end{lem}
+
+%%%%%induced subtree
+
+\begin{proof}
+ There are $n!$ ways of labelling a tree $t \in \R_n$, however if $l$ is a random recursive labelling every induced subtree 
+ $t_v$ and a totally ordered set, $S$, of labels there is precisely one possible label $s \in S$ for vertex $v$ (namely $s = \min(S)$).  
+ Therefore the factor we should divide out by is precisely $t!$.  In addition, to calculate the number of isomorphism classes of 
+ random recursive trees we must again divide out by $\sigma(t)$.
+\end{proof}
+Alternatively see \cite{Butcher2008} for a proof of Lemma \ref{lem:alpha}.
+Finally, let $\chi: \F \rightarrow \R$ be the map that ``forgets'' the embedding of a rooted plane tree.  It is clear that $\chi$ 
+is surjective but not injective hence we define
+\[
+ \gamma(t) = \lvert \chi^{-1} \rvert 
+\]
+the number of isomorphism classes of embeddings of a rooted tree $t$.  In order to obtain a third relation analogous to Equations 
+\ref{eq:1} and \ref{eq:2} we will describe a third function $w: \R \rightarrow \mathbb{R}$ recursively:
+\begin{align}
+ w(\bullet) &= 1  \\ 
+ w(t)  &= k!\prod_{i=1}^{k}w(t_i) 
+\end{align}
+\begin{ex}
+ Do the same example set as before
+\end{ex}
+
+\begin{lem}
+ \begin{equation}\label{eq:3}
+  \gamma(t) = \frac{w(t)}{\sigma(t)}
+ \end{equation}
+\end{lem}
+\begin{proof}
+ %%%%%%add a diagram to this proof
+ Let $B^{+}(t_1^{n_1},t_2^{n_2},\dots,t_k^{n_k})$ denote a tree in which the root is incident to $n_1$ isomorphic copies 
+ of a tree $t_1$, $n_2$ isomorphic copies of $t_2$ and so forth.  We remark that every rooted tree with at least 2 vertices can 
+ be written in this way.  Let $t  \in R$ and consider an induced subtree $t_v = B^{+}(t_1^{n_1},t_2^{n_2},\dots,t_k^{n_k})$. 
+ Vertex $v$ contributes a factor of $\left( \sum_{i=1}^k n_i \right)! $ to $w(t)$ since it has a recursive definition.  The order of 
+ automorphism group, $\sigma(t)$ can also be expressed recursively:
+ \begin{align}
+  \sigma(\bullet) &= 1 \\
+  \sigma(t) &= n_1 ! n_2! \dots n_k ! \prod_{i=1}^k\sigma(t_i)^{n_i} 
+ \end{align}
+Therefore vertex $v$ contribute a factor of $\prod_{i=1}^k n_i !$ to $\sigma(t)$.  Finally consider, $\gamma(t)$, the number of isomorphism classes of embeddings of $t$.  
+There are 
+\[
+ \frac{\left(\sum_{i=1}^k n_i \right)!}{\prod_{i=1}^k n_i!}
+\]
+non-isomorphic possibilities for the ordering of the children of $v$.
+\end{proof}
+
+\section{Automorphisms of Trees}\label{sec:aut}
+In this section we will describe a direct product decomposition of the automorphism group of a tree, $t$, in which factors of the direct product can be associated with particular induced subtrees of $t$.  
+
+Recall that a (rooted) tree automorphism is a permutation of vertices that preserves adjacency and the root.  It is a result of P\'{o}lya that automorphism 
+groups of trees belong to the class, $\mathcal{W}$, of permutation groups which contains the symmetric groups and is closed under taking direct and wreath products.  Let $t$ 
+be a rooted tree and consider the following decomposition,
+\begin{equation}\label{eq:decomposition}
+ \Aut(t) \cong A_1 \times A_2 \times \dots A_p \times B_1 \times B_2 \times \dots \times B_q  
+\end{equation}
+where each factor $A_i$ is isomorphic to a symmetric group and each $B_i$ is isomorphic to the wreath product of a group $G \in \mathcal{W}$.  In \cite{macarthur} MacArthur, 
+Sanchez-Garcia and Anderson showed that the decomposition of $\Aut(t)$ described in Equation \label{eq:decomposition} has a geometric interpretation.  An 
+automorphism group, $\Aut(t)$ may be decomposed by partitioning the set of generators $S$ of $\Aut(t)$ into support-disjoint subsets 
+$S = S_1 \cup S_2 \cup \dots \cup S_r$ and writing
+\begin{equation}\label{eq:geometric}
+ \Aut(t) = H_1 \times H_2 \times \dots \times H_r
+\end{equation}
+where each $H_i$ is generated by $S_i$.  This, \emph{geometric decomposition} is shown \cite{macarthur} to be unique and irreducible (each $H_i$ cannot be written as the direct product of support-disjoint subgroups) hence the geometric decomposition is well defined. We call each $H_i$ in the geometric decomposition of $\Aut(t)$ a \emph{geometric factor}. A symmetric subtree is the induced subtree of $t$ on the support of a geometric factor.
+\begin{ex}
+\begin{itemize}
+ \item[(i)]  A $k$-star is an induced subtree consisting of a vertex adjacent to $k$ vertices of outdegree 0.  A $k$-star is a symmetric subtree that corresponds to a geometric factor $S_k$ (the symmetric group on $k$ objects).  
+ \item[(ii)] %%%N-k stars
+\end{itemize}
+\end{ex}
+By P\'{o}lya's Theorem the geometric decomposition (Equation \ref{eq:geometric}) can be written in the form,
+\begin{equation}
+ \Aut(t) \cong A_1 \times A_2 \times \dots A_p \times B_1 \times B_2 \times \dots \times B_q  
+\end{equation}
+such that each $A_i$ corresponds to a symmetric subtree.  
+
+There is a natural way to split the geometric decomposition of $\Aut(t)$ into two subgroups. We define the direct product of symmetric groups to be the  \emph{elementary subgroup}:
+\[
+ \mathcal{E}(t) = A_{1} \times A_2 \times \dots\times A_p
+\]
+The direct product of wreath products of symmetric groups form the \emph{complex subgroup}:
+\[
+ \mathcal{C}(t) =  B_1 \times B_2 \times \dots \times B_q
+\]
+The order, $\sigma(t)$, of an automorphism group can also be split as follows:
+\[
+\sigma(t)  =  \lvert \mathcal{E}(t) \rvert\lvert \mathcal{C}(t)\rvert 
+\]
+This begs the question: does the order of either the elementary or the complex subgroup dominate the other?  MacArthur \cite{macarthur} made the following additional conjecture:
+\begin{con}\label{conj:2}
+ Let $\{T_t\}_{t=1}^{n}$ be a RRT. In the limit as $t \rightarrow \infty$, $\lvert \mathcal{E}(T_t)\rvert^{\frac{1}{t}}  = \mathcal{V}$, while in the limit as $t \rightarrow \infty$, $\lvert \mathcal{C}(T_t)\rvert^{\frac{1}{t}}  = 1$.
+ 
+ \end{con}
+  We claim that the elementary subgroup captures the contribution that $(n,k)$-stars make to the automorphism group and the complex subgroup captures the contribution that the extended symmetric branches make to the automorphism group.  %Might Need to prove this claim%%%%%%%%%%%%%%%%%%%%
+ % hence if conjecture \ref{conj:2} were true then to prove conjecture \ref{conj:1} it is enough to calculate the limiting behaviour of $(n,k)$-stars.  
+%add to conclusions etc.  
+
+\section{Functions on Trees}\label{sec:func}
+In this section we will build up a 3-part tool kit of functions $f: \R \rightarrow \mathbb{R}$ which will be used to calculate 
+ properties of rooted trees such as path length and order.  
+ 
+\subsection{Inductive Maps}
+\begin{defn}
+ Let $s = \{ s_r\}_{r=0}^{\infty}$ be a sequence such that each $s_r \in \{0,1\}$.  A \emph{variety}, $\V$, of trees is a 
+ collection of random recursive trees such that each vertex is permitted to have outdegree $r$ only if $s_r = 1$. 
+\end{defn}
+\begin{remk}
+ For a more general setting see \cite{bergeron}.
+\end{remk}
+The \emph{degree function} associated with a sequence $s= \{ s_r\}_{r=0}^{\infty}$ is the exponential generating function (EGF) defined as follows:
+\[
+ \phi(w) = \sum_{r \geq 0} s_r \frac{w^r}{r!}
+\]
+%%%%%%%BAD Notation remove phi from earlier or here
+
+\begin{ex}\label{ex:inductivemaps}
+ The collection, $\mathcal{B}$, of increasing binary trees are the set of all random recursive trees such that each vertex has 
+ outdegree either 0,1 or 2.  The degree function for increasing binary trees is
+ \[
+  \phi(w) = 1 + w + \frac{w^2}{2}
+ \]
+The degree function for random recursive trees is
+\[
+ \phi(w) = \exp(w).
+\]
+\end{ex}
+Fix a variety, $\mathcal{V}$, and define $V_n$ to be the number of trees of order $n$ in $\V$.  The EGF of the variety of trees 
+is 
+\[
+ V_{\V}(z) = \sum_{n \geq 1} V_n \frac{z^n}{n!}
+\]
+For example, 
+\begin{align}
+V_{\T}(z) &= \sum_{n\geq 1} \frac{z^n}{n} \\
+&= \log\left( \frac{1}{1-z}\right)
+\end{align}
+since the number of random recursive trees of order $n$ is $(n-1)!$.
+
+\begin{defn}
+Let $f = \{f_n\}_{n\geq 1}$ be a sequence of real numbers.  A function $s: \R \rightarrow \mathbb{R}$ is called an 
+\emph{inductive map} if it is definable by a relation,
+\[
+ s(t) = f_{\lvert t \rvert} + \sum_{i=1}^k s(t_i)
+\]
+where $t = B^{+}(t_1,t_2,\dots,t_k)$.
+\end{defn}
+Given a tree function $s$ and a variety $\mathcal{V}$ the EGF of $s$ over $\mathcal{V}$ is 
+\[
+ S(z) = \sum_{t \in \V} s(t) \frac{z^{\lvert t \rvert}}{\lvert t \rvert !}
+\]
+\begin{ex}
+ Let $\delta_{i,j}$ be the usual Kronecker delta. The following is a list of possible sequences $f$ and the tree parameter 
+ measured by the corresponding function $s$
+ \begin{itemize}
+  \item[(i)]   $f_n = 1$ for all $n$ counts tree size.
+  \item[(ii)] $f_n = \delta_{n,i}$ counts the number of induced subtrees of order $i$.
+  \item[(iii)] $f_n = n$ counts path lengths.
+ \end{itemize}
+ \end{ex}
+
+In order to calculate $S(z)$ easily and effectively we appeal to the following Theorem of Bergeron \cite{bergeron}.
+\begin{thm}\label{thm:inductivemaps}
+ \[
+ S(z) = Y'(z) \int_{0}^{z} \frac{F'(t)}{Y'(t)} dt
+ \]
+where $F(z)$ is defined from $\V$ and the sequence $f$
+\[
+ F(z) = \sum_{n \geq 0} f_n V_n \frac{z^n}{n!}
+\]
+\end{thm}
+
+ \subsection{Butcher Series}
+ %The reference for the beginning of this section s ``Geometric numerical integration''
+ %Actually include the definition of a B-series
+ Throughout this section let $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a suitably differentiable function and consider differential equations of the form 
+ \[
+  \frac{d}{ds}{y(s)} = f(y(s))
+ \]
+where $y(s_0) = y_0$.  We use the notation $f'(y)$ for the derivative $\frac{d}{dy}f(y)$ and note that $f'(y)$ is a linear map (the Jacobian), the second derivative $f''(y)$ is a bilinear map and so on.   
+We follow Butcher and make the following definition \cite{Butcher2008}.
+
+\begin{defn}
+Let $t = B^{+}(t_1,t_2,\dots,t_k)$ be  a rooted tree. An \emph{elementary differential} is a map  $F(t):  \mathbb{R}^n \rightarrow \mathbb{R}^n$ defined 
+recursively by:
+\begin{align}
+ F(\bullet)(y) &= f(y) \\%%%%%This doesn't makes sense because $s$ is not a real number!!!!
+ F(t)(y) &= f^{m}(y)(F(t_1)(y),\dots,f(t_k)(y))
+ \end{align}
+\end{defn}
+%%%Add explanation
+\begin{theorem}\label{Butcher}
+ The solution of 
+ \[
+  y(s) = y_0 + \int_{s_0}^{s} f(y(s')) ds'
+ \]
+is
+\[
+ y(s) = y_0 + \sum_{t \in \R} \frac{(s-s_0)^{\lvert t \rvert}}{\lvert t \rvert !}\alpha(t)F(t)(y_0)
+\]
+\end{theorem}
+
+\begin{proof}
+ See \cite{Butcher2008,brouder}
+\end{proof}
+
+\begin{ex}\label{ex:1}
+ Let $y_0 = s_0 = 0$  and consider the case $f(s) = \frac{1}{1-s}$ so that  $f^{(k)}(0) = k!$ then $F(t) = w(t)$.
+\end{ex}
+
+%\subsection{Bare Green Functions} do we really need to include these????????(probably we aught to!)
+
+\section{Bounds on the expected value of $\Aut(t)$}\label{sec:bounds}
+\subsection{A lower bound}
+In this section we will calculate the expected contribution the geometric factors, $G_k$, corresponding to $k$-stars which will be a 
+lower bound for the expected value of $\Aut(t)$.  Given a  tree $t$ the number of automorphisms $\alpha \in \Aut(t)$ which correspond 
+to a $k$-star for any $k$ is written $\sigma_*(t)$.
+
+Consider the family, $s^k$ of inductive maps over variety $\T$ that are defined by the sequences $f^k_n = \delta_{k,n}$.  Given a tree 
+$t \in \T$ the map $s^{k}(t)$ counts the number of induced subtrees of $t$ that have order $k$ (as we have seen in Example 
+\ref{ex:inductivemaps}). 
+
+Following Theorem \ref{thm:inductivemaps}, to each map $s^k$ we associate the function,
+\begin{align}
+ F_k(z) &= \sum_{n \geq 1} f_n^k V_n \frac{z^{n}}{n!} \\
+ &= \frac{z^k}{k}
+\end{align}
+thus $F_k'(z) = z^{k-1}$.  By Theorem \ref{thm:inductivemaps},
+\begin{align}
+ \sum_{t \in \T} s^k(t) \frac{z^{\lvert t vert}}{\lvert t \rvert !}  &= \frac{1}{1-z}\int_{0}^{z}t^{k-1}(1-t) dt \\
+ &= \frac{1}{1-z}\left(\frac{z^k}{k} - \frac{z^{k+1}}{k+1} \right)  \\
+ &= \frac{z^{k}}{k} + \sum_{i \geq k+1} \frac{z^i}{(k)(k+1)}
+\end{align}
+hence for $n \geq k+1$,
+\[
+ \sum_{t \in \T_n} s^k(t) = \frac{n!}{k(k+1)}.
+\]
+Let $\hat{t}_k \in \T_k$ be a random recursive tree isomorphic to a $(k-1)$-star.  Since $\hat{t}_k ! = k$ and $\sigma(\hat{t}_k) = (k-1)!$, 
+by Lemma \ref{lem:alpha} 
+\[
+ \alpha(\hat{t}_k) = 1
+\]
+i.e. there is only one isomorphism class of random recursive trees on $k$ vertices isomorphic to $\hat{t}_k$.  Fik $k \geq 3$ 
+and suppose that $t = (r,V,E,l)$ is a random recursive tree and $t \in \T_n$ for some $n >k$.  Suppose $t$ contains an induced 
+subtree, $t_v = (v,V_v,E_v,l_v)$ that has order $k$ hence $v \neq r$.  Given a set $S$ and a subset $R \leq S$ we define $\bar{R}$ 
+to be the complement of $R$ in $S$.  We further define the complement of $t_v$ in $t$ to be 
+\[\bar{t_v} = (r, \bar{V_v},\bar{E_v} \backslash{(v,f(v)},bar{l_v})\]
+where $f(v) \in E$ is the vertex adjacent to $v$ with a smaller label often called the father of $v$.  Notice that there exist $(k-1)!$ non isomorphic trees $t \in \T_n$ 
+which consist of $\bar{t_v}$ and a random recursive tree of order $k$ joined to $\bar{t_v}$  via the edge $\{(v,f(v))\}$.
+
+Given a tree $t \in \T$ let $n_k(t)$ be the number of induced subtrees of $t$ isomorphic to $\hat{t}_k$,
+\[
+ \sum_{t \in \T_n}  = \frac{n!}{(k+1)!}
+\]
+by the argument above.  Since $\sigma(\hat{t_k}) = (k-1)!$,
+\begin{align}
+ \mathbb{E}_{\T_n}(\log(\lvert G_k \rvert^{\frac{1}{n}}) &= \frac{1}{\lvert \T_n \rvert}\sum_{t \in \T_n} \log((k-1)!^{\frac{n_k(t)}{n}}) \\
+ &= \frac{1}{(n-1)!}\sum_{t \in \T_n} \log((k-1)!)\frac{n_k(t)}{n} \\
+ &= \frac{\log(k-1)!}{(k+1)!}
+\end{align}
+By summing over all $k \geq 3$ we find that 
+\[
+\mathbb{E}_{\T_n}(\sigma_*(t)^{\frac{1}{n}})  = 
+ \sum_{k geq 3} \frac{\log(k-1)!}{(k+1)!}
+\]
+Finally, since $\exp$ is convex,  by Jensen's inequality
+\[
+ \exp\left(\sum_{k \geq 3}\left( \frac{\log(k-1)!}{(k+1)!} \right)\right) \leq \mathbb{E}_{\T_n}(\sigma(t)^{\frac{1}{n}}
+\]
+
+\subsection{An upper bound}
+In this section we will use B-series and Theorem \ref{thm:Butcher} to calculate an upper bound for the expected order 
+$\mathbb{E}_{\T,n}(\sigma(t))$ of an automorphism group of a random recursive tree $t$.  
+
+Recall from equation \ref{eq:3} that $\gamma(t) = \frac{w(t)}{\sigma(t)}$ hence
+\begin{align}
+ \mathbb{E}_{\T,n}(\sigma(t))  &= \frac{1}{\lvert \T_n \rvert} \sum_{t \in R_n} \alpha(t)\sigma(t)  \\
+ &< \frac{1}{\lvert \T_n \rvert} \sum_{t \in R_n} \alpha(t)w(t)
+\end{align}
+We define $f(s)= \frac{1}{1-s}$ as in Example \ref{ex:1} so that  $f^{(k)}(0) = k!$.  By Theorem \ref{Butcher} the solution to 
+\begin{equation}\label{eq:5}
+ x(s) = \int_0^s = \frac{1}{1-x(s')} ds'
+\end{equation}
+is
+\begin{equation}\label{eq:7}
+ x(s) = \sum_{t \in \R} \frac{s^{\lvert t \rvert}}{\lvert t \rvert !}\alpha(t)w(t)
+\end{equation}
+We may restate Equation \ref{eq:5} as $x'(s) = \frac{1}{1-x(s)}$ which is a first order, non-linear differential equation with 
+solution
+\begin{equation}\label{eq:6}
+  x(s) = 1 \pm (c_1 -2s +1)^{\frac{1}{2}}
+\end{equation}
+where $c_1$ is a constant to be determined.  Since (by Equation \ref{eq:5}) $x(0) = 0$ we may deduce that $c_1 = 0$.  By using the 
+binomial expansion of Equation \ref{eq:6} and comparing with Equation \ref{eq:7} we find that,
+\[
+ \sum_{\lvert t \rvert = n}\alpha(t)w(t) = \prod_{i=1}^{n-1} (2i-1)
+\]
+Note that $\prod_{i=1}^{n-1} (2i-1) = (2n-3)!!$ hence using factorial identities and Stirling's approximation 
+\begin{align}
+ \frac{(2n-3)!!}{(n-1)!} &= \frac{(2n - 3)!}{(n-1)!^2 2^{n-1}} \\
+ & = b %%%%Finish this off
+\end{align}
+
+Therefore,
+\[
+ \mathbb{E}_{\T,n}(\sigma(t)) < blah 
+\]
+By Jensen's inequality,  %%Perhaps some background on Jensen's inequality
+\[
+ \mathbb{E}_{\T,n}(\sigma(t)^{\frac{1}{n}}) < blah^{\frac{n-1}{n}} = \text{constant as required}
+\]
+%It is interesting to compare the expected value of $\sigma(t)^{\frac{1}{n}}$ with the typical value of $\sigma(t)^{\frac{1}{n}}$ 
+%for random recursive trees since this will illuminate the nature of the distribution of automorphism group orders.  
+ 
+%Consider the following alternative decription of random recursive trees as a growing tree process:  A \emph{random recursive 
+%tree}, $ t \in \T_n$ can be written as a nested sequence of random recursive trees:
+%\[t = t^1 \subset t^2 \subset \dots \subset t^n.\]
+%such that at initial time $s=1$ the tree $t^1$ is the random recursive tree with 1 vertex and no edges and subsequently at times 
+%$s = 2,3,\dots,n$ a vertex, $v$, is chosen from the set vertices, $V^{(s-1)}$, of tree $t^{(s-1)}$ uniformly at random and a 
+%new vertex labelled $t$ is attached to $v$ via an edge.  
+%\begin{remk}
+% The interpretation, above, makes it clear why we name this family; \emph{random} recursive trees.  It also makes obvious the 
+% observation that $\lvert \T_n \rvert  = (n-1)!$ since at time $s$ there are $s-1$ possible vertices for $v$ to be attached.  
+%\end{remk}
+%Let $t = \{t^s\}_{s\geq 1}$ be a random recursive tree and $X_{s,i}$ be the number of vertices of outdegree $i-1$ in $t^s$.
+ 
+%\begin{thm}
+% In the limit as $s \rightarrow \infty$, almost surely $\frac{X_{s,i}}{s} \rightarrow 2^{-(i+1)}$. 
+%\end{thm}
+%\begin{proof}
+% See Janson \ref{}
+%\end{proof}
+%As a corollary to this, in the limit as $s \rightarrow \infty$, almost surely $\frac{X_{s,i}}{s} \rightarrow 2^{-(i+1)}$. 
+%%Be careful....might have already done the hard work....
+\section{A disproof of Conjecture \ref{conj:2}}\label{sec:disproof}
+
+In this section we will disprove Conjecture \ref{conj:2} by demonstrating that there exists a symmetric subtree corresponding to a geometric factor $H$  contained in the complex subgroup of the automorphism group such that the expectation of $\lvert H \rvert^{\frac{1}{n}}$ over $\T_n$ is
+  \[
+   \mathbb{E}_{\T_n}(\lvert H \rvert^{\frac{1}{n}}) >1
+  \]
+The symmetric subtree, $\hat{t}$, reticulated in Figure \ref{} on 7 vertices such that $\Aut(\hat{t}) \cong S_2 \wr S_2$ hence $\sigma(\hat{t}) = 8$.
+
+Consider the inductive map, $s$  (over the variety $\T$) defined by a sequence $f_n = \log(8)\delta_{n,7}$ and assume that $s$ has EGF
+\begin{equation}\label{eq:9}
+  S(z) = \sum_{t \in \T} s(t)\frac{z^{\lvert t \rvert}}{\lvert t \rvert !}
+\end{equation}
+
+
+By Theorem \ref{} $S(z)$ can also be expressed as follows:
+\[
+ S(z) = Y'(z) \int_0^z \frac{F'(z)}{Y'(z)} dt
+\]
+where $Y(z) = \frac{1}{1-z}$ and $F(z) = \frac{\log(8)t^7}{7}$, thus
+\[
+ S(z) = \frac{\log(8)}{(1-z)}\int_0^z(1-t)t^6 dt
+\]
+hence, for $n \geq 8$,
+\begin{equation}\label{eq:10}
+ S(z) = \sum_{n \geq 8} \frac{\log(8)z^n}{56}
+\end{equation}
+Let $\delta(t)$ denote the number of induced subtrees of some tree, $t$, that are order exactly 7.  By comparing Equation \ref{eq:9} and Equation \ref{eq:10},
+\[
+ \sum_{t \in \T_n}\log(8)\delta(t) = \frac{n!\log(8)}{56}
+\]
+Given a random recursive tree $t$ let $\epsilon(t)$ denote the number of induced subtrees of $t$ that are isomorphic to $\hat{t}$. Since $\alpha(\hat{t}) = 10$ and $\lvert \T_7 \rvert = 6!$ we may write,
+\[
+ \sum_{t \in \T_n}\log(8)\epsilon(t) = \frac{10\log(8)n!}{8!}
+\]
+Therefore the expected value, 
+\begin{align}
+ \mathbb{E}_{\T_n}(\log\left(\lvert H \rvert^{\frac{1}{n}}\right) &= \frac{1}{\T_n}\sum_{t \in \T_n} \log(8^{\frac{\epsilon(t)}{n}}) \\
+ &= \frac{1}{(n-1)!}\sum_{t \in \T_n} \frac{\log(8)\epsilon(t)}{n} \\
+ &= \frac{10\log(8)}{8!}
+\end{align}
+
+Since exponential is a convex function,
+\[
+ 1 < \exp\left( \frac{10\log(8)}{8!}\right) \leq \mathbb{E}_{\T_n}\left( \lvert H_i \rvert^{\frac{1}{n}}\right) \leq \mathbb{E}_{\T_n} \left( \lvert \mathcal{C}(t) \rvert^{\frac{1}{n}}   \right)
+\]
+by Jensen's inequality; thus disproving Conjecture \ref{conj:2}.  
+\section{Conclusions}\label{sec:conc}
+
+\bibliographystyle{amsalpha}
+\bibliography{Bounds.bib}
+
+\end{document}
