@@ -1,48 +1,53 @@
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: Bounds.aux
+Case mismatch error between cite keys butcher2008 and Butcher2008
+---line 45 of file Bounds.aux
+ : \citation{butcher2008
+ :                      }
+I'm skipping whatever remains of this command
 The style file: amsalpha.bst
 Database file #1: Bounds.bib.bib
 Warning--missing pages in kreimer
 Warning--missing pages in macarthur2006
-You've used 10 entries,
+You've used 11 entries,
             2624 wiz_defined-function locations,
-            619 strings with 5608 characters,
-and the built_in function-call counts, 3445 in all, are:
-= -- 306
-> -- 150
-< -- 6
-+ -- 48
-- -- 48
-* -- 289
-:= -- 569
-add.period$ -- 10
-call.type$ -- 10
-change.case$ -- 59
-chr.to.int$ -- 10
-cite$ -- 12
-duplicate$ -- 149
-empty$ -- 275
-format.name$ -- 63
-if$ -- 680
+            626 strings with 5703 characters,
+and the built_in function-call counts, 3770 in all, are:
+= -- 339
+> -- 155
+< -- 7
++ -- 50
+- -- 49
+* -- 320
+:= -- 614
+add.period$ -- 11
+call.type$ -- 11
+change.case$ -- 64
+chr.to.int$ -- 11
+cite$ -- 13
+duplicate$ -- 164
+empty$ -- 305
+format.name$ -- 66
+if$ -- 747
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 22
-newline$ -- 40
-num.names$ -- 29
-pop$ -- 69
+missing$ -- 24
+newline$ -- 43
+num.names$ -- 31
+pop$ -- 74
 preamble$ -- 1
-purify$ -- 68
+purify$ -- 74
 quote$ -- 0
-skip$ -- 104
+skip$ -- 113
 stack$ -- 0
-substring$ -- 176
-swap$ -- 13
-text.length$ -- 6
-text.prefix$ -- 5
+substring$ -- 206
+swap$ -- 14
+text.length$ -- 7
+text.prefix$ -- 6
 top$ -- 0
-type$ -- 68
+type$ -- 76
 warning$ -- 2
-while$ -- 32
-width$ -- 12
-write$ -- 113
-(There were 2 warnings)
+while$ -- 35
+width$ -- 13
+write$ -- 124
+(There was 1 error message)

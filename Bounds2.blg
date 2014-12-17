@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: Bounds2.aux
+The style file: amsalpha.bst
+Database file #1: Bounds.bib.bib
+Warning--missing pages in kreimer
+Warning--missing pages in macarthur2006
+You've used 10 entries,
+            2624 wiz_defined-function locations,
+            619 strings with 5610 characters,
+and the built_in function-call counts, 3445 in all, are:
+= -- 306
+> -- 150
+< -- 6
++ -- 48
+- -- 48
+* -- 289
+:= -- 569
+add.period$ -- 10
+call.type$ -- 10
+change.case$ -- 59
+chr.to.int$ -- 10
+cite$ -- 12
+duplicate$ -- 149
+empty$ -- 275
+format.name$ -- 63
+if$ -- 680
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 22
+newline$ -- 40
+num.names$ -- 29
+pop$ -- 69
+preamble$ -- 1
+purify$ -- 68
+quote$ -- 0
+skip$ -- 104
+stack$ -- 0
+substring$ -- 176
+swap$ -- 13
+text.length$ -- 6
+text.prefix$ -- 5
+top$ -- 0
+type$ -- 68
+warning$ -- 2
+while$ -- 32
+width$ -- 12
+write$ -- 113
+(There were 2 warnings)
